@@ -1,0 +1,124 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+---
+
+<Layout title="Universo Musical">
+  <main>
+    <svg
+      class="astro-a"
+      width="495"
+      height="623"
+      viewBox="0 0 495 623"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M167.19 364.254C83.4786 364.254 0 404.819 0 404.819C0 404.819 141.781 19.4876 142.087 18.7291C146.434 7.33701 153.782 0 162.803 0H332.272C341.293 0 348.641 7.33701 352.988 18.7291C353.294 19.4876 495 404.819 495 404.819C495 404.819 411.521 364.254 327.81 364.254L264.718 169.166C264.385 168.103 262.574 168.103 262.241 169.166L167.19 364.254Z"
+        fill="url(#paint0_linear_1805_24383)"
+      ></path>
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M201.356 372.205C157.456 372.205 115.046 385.236 74.8905 405.332C74.8905 405.332 135.564 534.496 148.756 546.318C162.898 559.039 180.651 562.334 196.757 562.334H298.243C314.349 562.334 332.102 559.039 346.244 546.318C359.436 534.496 420.109 405.332 420.109 405.332C379.954 385.236 337.544 372.205 293.644 372.205C288.764 371.944 285.404 369.799 283.594 367.448L252.526 311.702C251.898 310.694 251.109 310.183 250.322 310.183C249.535 310.183 248.746 310.694 248.118 311.702L217.05 367.448C215.24 369.799 211.88 371.944 207.0 372.205H201.356Z"
+        fill="#C561F6"
+      ></path>
+      <defs>
+        <linearGradient
+          id="paint0_linear_1805_24383"
+          x1="247.5"
+          y1="0"
+          x2="247.5"
+          y2="404.819"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stop-color="#4F39FA"></stop>
+          <stop offset="1" stop-color="#DA62C4"></stop>
+        </linearGradient>
+      </defs>
+    </svg>
+    <h1>Bienvenido al <span class="text-gradient">Universo Musical</span></h1>
+    <p class="instructions">
+      Tu espacio para explorar música e instrumentos del mundo.
+      <br />
+      Explora las secciones y descubre el universo sonoro.
+    </p>
+    <ul role="list" class="link-card-grid">
+      <Card
+        href="https://docs.astro.build/"
+        title="Documentación"
+        body="Aprende sobre Astro, el framework web moderno."
+      />
+      <Card
+        href="https://astro.build/integrations/"
+        title="Integraciones"
+        body="Agrega React, Vue, Tailwind y más a tu proyecto."
+      />
+      <Card
+        href="https://astro.build/themes/"
+        title="Temas"
+        body="Explora una galería de temas y plantillas de Astro."
+      />
+      <Card
+        href="https://astro.build/chat/"
+        title="Comunidad"
+        body="Únete al Discord de Astro y comparte tu proyecto."
+      />
+    </ul>
+  </main>
+</Layout>
+
+<style>
+  main {
+    margin: auto;
+    padding: 1rem;
+    width: 800px;
+    max-width: calc(100% - 2rem);
+    color: white;
+    font-size: 20px;
+    line-height: 1.6;
+  }
+  .astro-a {
+    position: absolute;
+    top: -32px;
+    left: 50%;
+    transform: translatex(-50%);
+    width: 220px;
+    height: auto;
+    z-index: -1;
+  }
+  h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    margin-bottom: 1em;
+  }
+  .text-gradient {
+    background-image: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400%;
+    background-position: 0%;
+  }
+  .instructions {
+    margin-bottom: 2rem;
+    border: 1px solid rgba(var(--accent-light), 25%);
+    background: linear-gradient(
+      rgba(var(--accent-dark), 66%),
+      rgba(var(--accent-dark), 33%)
+    );
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+  }
+  .link-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+    gap: 2rem;
+    padding: 0;
+  }
+</style>
