@@ -1,0 +1,31 @@
+---
+import CatalogBrowser from '../components/CatalogBrowser.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import WhatsAppFab from '../components/WhatsAppFab.astro';
+import Layout from '../layouts/Layout.astro';
+import { getCatalogOverview } from '../lib/catalog';
+
+const overview = getCatalogOverview('accesorios');
+---
+
+<Layout
+  title="Accesorios | Universo Musical"
+  description="Catalogo de accesorios de Universo Musical con busqueda, filtros por familia y contacto directo por WhatsApp."
+>
+  <SiteHeader currentPath="/accesorios" />
+
+  <main class="section">
+    <div class="container">
+      <CatalogBrowser
+        eyebrow="Catalogo de accesorios"
+        title="Accede a cuerdas, estuches, cables y repuestos en una vista mucho mas util."
+        intro="La separacion entre home y catalogo evita saturacion en la entrada y deja este espacio dedicado a encontrar el accesorio correcto con rapidez."
+        overview={overview}
+      />
+    </div>
+  </main>
+
+  <SiteFooter />
+  <WhatsAppFab message="Hola, quiero asesoria sobre accesorios en Universo Musical." />
+</Layout>

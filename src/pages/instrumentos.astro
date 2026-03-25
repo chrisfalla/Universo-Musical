@@ -1,0 +1,31 @@
+---
+import CatalogBrowser from '../components/CatalogBrowser.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import WhatsAppFab from '../components/WhatsAppFab.astro';
+import Layout from '../layouts/Layout.astro';
+import { getCatalogOverview } from '../lib/catalog';
+
+const overview = getCatalogOverview('instrumentos');
+---
+
+<Layout
+  title="Instrumentos | Universo Musical"
+  description="Catalogo de instrumentos de Universo Musical con filtros por familia, precios visibles y consulta directa por WhatsApp."
+>
+  <SiteHeader currentPath="/instrumentos" />
+
+  <main class="section">
+    <div class="container">
+      <CatalogBrowser
+        eyebrow="Catalogo de instrumentos"
+        title="Explora el inventario de instrumentos sin perderte en una sola landing."
+        intro="Esta vista separa el catalogo del inicio para que el recorrido sea mas claro. Aqui puedes buscar por nombre, filtrar por familia y saltar a WhatsApp con el articulo exacto."
+        overview={overview}
+      />
+    </div>
+  </main>
+
+  <SiteFooter />
+  <WhatsAppFab message="Hola, quiero asesoria sobre instrumentos en Universo Musical." />
+</Layout>

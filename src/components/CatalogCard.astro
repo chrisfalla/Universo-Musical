@@ -1,0 +1,118 @@
+---
+import type { CatalogItem } from '../lib/catalog';
+
+interface Props {
+  item: CatalogItem;
+}
+
+const { item } = Astro.props;
+---
+
+<article
+  class="catalog-card"
+  data-catalog-card
+  data-family={item.familyKey}
+  data-search={item.searchText}
+  data-availability={item.availabilityTone}
+>
+  <div class="card-topline">
+    <span class="family-tag">{item.family}</span>
+    <span class:list={['availability-badge', `is-${item.availabilityTone}`]}>{item.availability}</span>
+  </div>
+
+  <div class="card-copy">
+    <h3>{item.name}</h3>
+    <p class="price">{item.priceLabel}</p>
+    {item.includes && <p class="includes">Incluye: {item.includes}</p>}
+  </div>
+
+  <a class="button button-primary card-action" href={item.whatsAppLink} target="_blank" rel="noreferrer">
+    Consultar por WhatsApp
+  </a>
+</article>
+
+<style>
+  .catalog-card {
+    min-height: 100%;
+    display: grid;
+    gap: 1rem;
+    padding: 1.2rem;
+    border-radius: 1.3rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
+      rgba(15, 20, 30, 0.88);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .card-topline {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.8rem;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .family-tag,
+  .availability-badge {
+    min-height: 2rem;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+  }
+
+  .family-tag {
+    color: var(--color-accent-strong);
+    background: rgba(240, 173, 78, 0.14);
+  }
+
+  .availability-badge {
+    color: var(--color-foreground);
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .availability-badge.is-available {
+    color: #90ffc7;
+    background: rgba(45, 179, 117, 0.16);
+  }
+
+  .availability-badge.is-low {
+    color: #ffd38d;
+    background: rgba(240, 173, 78, 0.16);
+  }
+
+  .availability-badge.is-check {
+    color: #b9cae2;
+    background: rgba(35, 92, 112, 0.22);
+  }
+
+  .card-copy {
+    display: grid;
+    gap: 0.6rem;
+  }
+
+  .card-copy h3 {
+    font-size: 1.1rem;
+    line-height: 1.35;
+    margin: 0;
+  }
+
+  .price {
+    color: var(--color-foreground);
+    font-size: 1.08rem;
+    font-weight: 700;
+  }
+
+  .includes {
+    color: var(--color-muted);
+    font-size: 0.92rem;
+  }
+
+  .card-action {
+    width: 100%;
+  }
+</style>
