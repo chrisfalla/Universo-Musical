@@ -1,0 +1,61 @@
+---
+import { createWhatsAppLink } from '../lib/whatsapp';
+
+interface Props {
+  message?: string;
+}
+
+const {
+  message = 'Hola, quiero recibir asesoria sobre el catalogo de Universo Musical.'
+} = Astro.props;
+
+const whatsAppLink = createWhatsAppLink(message);
+---
+
+<a
+  class="whats-app-fab"
+  href={whatsAppLink}
+  target="_blank"
+  rel="noreferrer"
+  aria-label="Abrir conversacion por WhatsApp"
+>
+  <span aria-hidden="true">WA</span>
+  <strong>Escribir</strong>
+</a>
+
+<style>
+  .whats-app-fab {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 40;
+    min-height: 3.5rem;
+    padding: 0.55rem 1rem;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    color: var(--color-base);
+    background: linear-gradient(135deg, #59d98e, #00a884);
+    box-shadow: 0 1rem 2.4rem rgba(0, 168, 132, 0.35);
+    font-weight: 700;
+  }
+
+  .whats-app-fab span {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.18);
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+  }
+
+  @media (min-width: 960px) {
+    .whats-app-fab {
+      display: none;
+    }
+  }
+</style>

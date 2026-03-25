@@ -1,0 +1,74 @@
+---
+import { WHATSAPP_DISPLAY, createWhatsAppLink } from '../lib/whatsapp';
+
+const whatsAppLink = createWhatsAppLink(
+  'Hola, quiero recibir asesoria sobre el catalogo de Universo Musical.'
+);
+---
+
+<footer class="site-footer">
+  <div class="container footer-shell">
+    <div class="footer-copy">
+      <p class="eyebrow">Contacto directo</p>
+      <h2 class="display-font">Compra, consulta y confirma tu inventario por WhatsApp.</h2>
+      <p>
+        Universo Musical concentra esta primera version de la web en un canal simple y rapido para
+        convertir mejor: atencion directa al numero {WHATSAPP_DISPLAY}.
+      </p>
+    </div>
+
+    <div class="footer-actions">
+      <a class="button button-primary" href={whatsAppLink} target="_blank" rel="noreferrer">
+        Hablar por WhatsApp
+      </a>
+      <a class="button button-secondary" href="/instrumentos">Ver instrumentos</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    padding: 0 0 4rem;
+  }
+
+  .footer-shell {
+    display: grid;
+    gap: 1.4rem;
+    padding: clamp(1.35rem, 3vw, 2.2rem);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1.7rem;
+    background:
+      linear-gradient(140deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
+      linear-gradient(120deg, rgba(240, 173, 78, 0.12), rgba(224, 91, 62, 0.08), rgba(35, 92, 112, 0.12));
+    box-shadow: var(--shadow-card);
+  }
+
+  .footer-copy {
+    display: grid;
+    gap: 0.8rem;
+  }
+
+  .footer-copy h2 {
+    font-size: clamp(2.2rem, 6vw, 3.5rem);
+    line-height: 0.94;
+  }
+
+  .footer-copy p:last-child {
+    max-width: 58ch;
+    color: var(--color-muted);
+  }
+
+  .footer-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    align-items: center;
+  }
+
+  @media (min-width: 880px) {
+    .footer-shell {
+      grid-template-columns: minmax(0, 1.3fr) auto;
+      align-items: center;
+    }
+  }
+</style>
