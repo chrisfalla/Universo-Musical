@@ -1,38 +1,47 @@
-# 🎵 Universo Musical
+# Universo Musical
 
-Sitio web sobre música e instrumentos, construido con [Astro](https://astro.build/).
+Sitio web comercial construido con Astro para mostrar el inventario real de Universo Musical con una home enfocada en conversion y dos vistas separadas de catalogo:
 
-## 🚀 Estructura del proyecto
+- `/instrumentos`
+- `/accesorios`
 
-```
+La informacion del catalogo se carga desde `inventario para siigo.xlsx` durante la build. El recorrido comercial esta centrado en WhatsApp como canal principal de contacto.
+
+## Estructura principal
+
+```text
 /
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-├── astro.config.mjs
-├── package.json
-└── tsconfig.json
+|-- inventario para siigo.xlsx
+|-- public/
+|-- src/
+|   |-- components/
+|   |-- layouts/
+|   |-- lib/
+|   `-- pages/
+|-- astro.config.mjs
+|-- package.json
+`-- tsconfig.json
 ```
 
-## 🧞 Comandos
+## Comandos
 
-Todos los comandos se ejecutan desde la raíz del proyecto con pnpm:
+Todos los comandos se ejecutan desde la raiz del proyecto:
 
-| Comando           | Acción                                           |
-| :---------------- | :----------------------------------------------- |
-| `pnpm install`    | Instala las dependencias                         |
-| `pnpm dev`        | Inicia el servidor local en `localhost:4321`     |
-| `pnpm build`      | Construye el sitio para producción en `./dist/`  |
-| `pnpm preview`    | Vista previa de la build localmente              |
-| `pnpm astro ...`  | Ejecuta comandos de la CLI de Astro              |
+| Comando | Accion |
+| :-- | :-- |
+| `pnpm install` | Instala las dependencias |
+| `pnpm dev` | Inicia el entorno local en `localhost:4321` |
+| `pnpm build` | Genera la version estatica en `dist/` |
+| `pnpm preview` | Sirve la build localmente |
 
-## 🛠️ Tecnologías
+## Flujo de inventario
 
-- **[Astro](https://astro.build/)** — Framework web moderno y rápido
-- **[pnpm](https://pnpm.io/)** — Gestor de paquetes eficiente
+1. Reemplaza o actualiza `inventario para siigo.xlsx`.
+2. Ejecuta `pnpm build`.
+3. La web vuelve a generar la home y los catalogos con los datos nuevos.
+
+## Stack
+
+- [Astro](https://astro.build/)
+- [pnpm](https://pnpm.io/)
+- [xlsx](https://www.npmjs.com/package/xlsx)
