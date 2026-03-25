@@ -1,847 +1,434 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import WhatsAppFab from '../components/WhatsAppFab.astro';
+import { getCatalogSnapshot } from '../lib/catalog';
+import { WHATSAPP_DISPLAY, createWhatsAppLink } from '../lib/whatsapp';
 
-const services: { title: string; description: string }[] = [
+const { instrumentos, accesorios } = getCatalogSnapshot();
+
+const heroLink = createWhatsAppLink(
+  'Hola, quiero asesoria para elegir un instrumento o accesorio en Universo Musical.'
+);
+
+const instrumentPreviewFamilies = instrumentos.familySummaries
+  .filter((family) => family.family !== 'Otros')
+  .slice(0, 4);
+const accessoryPreviewFamilies = accesorios.familySummaries
+  .filter((family) => family.family !== 'Otros')
+  .slice(0, 4);
+
+const benefits = [
   {
-    title: 'Clases personalizadas',
-    description:
-      'Sesiones para principiantes y avanzados con enfoque en tecnica, musicalidad y repertorio real de escenario.'
+    title: 'Inventario real y ordenado',
+    body: 'La web ahora prioriza lo que si existe en bodega y lo presenta por familias para que encontrar sea mas facil.'
   },
   {
-    title: 'Mantenimiento y calibracion',
-    description:
-      'Ajuste completo de accion, afinacion y electronica para que cada instrumento responda con precision profesional.'
+    title: 'Compra conversacional',
+    body: 'Cada vista lleva a WhatsApp con el producto exacto, asi la cotizacion arranca con contexto y sin vueltas.'
   },
   {
-    title: 'Asesoria de compra',
-    description:
-      'Guiamos tu inversion con recomendaciones por nivel, genero y presupuesto para elegir el equipo correcto.'
-  },
-  {
-    title: 'Alquiler para eventos',
-    description:
-      'Backline y accesorios listos para shows, ensayos, grabaciones y eventos corporativos con soporte tecnico.'
+    title: 'Disponibilidad visible',
+    body: 'Mostramos precios y estados de inventario cuando el dato es valido, sin saturar la home con cientos de referencias.'
   }
 ];
 
-const instruments: { name: string; category: string; priceLabel: string; badge: string }[] = [
-  { name: 'Stratocaster Nova X', category: 'Cuerdas', priceLabel: 'Desde $2.490.000 COP', badge: 'Top ventas' },
-  { name: 'Acustica Cedar 40', category: 'Cuerdas', priceLabel: 'Desde $1.290.000 COP', badge: 'Sonido calido' },
-  { name: 'Stage Piano R88', category: 'Teclados', priceLabel: 'Desde $3.990.000 COP', badge: 'Escenario' },
-  { name: 'Synth Pulse MKII', category: 'Teclados', priceLabel: 'Desde $4.490.000 COP', badge: 'Edicion pro' },
-  { name: 'Kit Maple Studio', category: 'Percusion', priceLabel: 'Desde $5.390.000 COP', badge: 'Nuevo' },
-  { name: 'Cajon Flamenco Pro', category: 'Percusion', priceLabel: 'Desde $780.000 COP', badge: 'Favorito' },
-  { name: 'Saxo Alto Vega', category: 'Viento', priceLabel: 'Desde $4.190.000 COP', badge: 'Precision' },
-  { name: 'Trompeta Brass One', category: 'Viento', priceLabel: 'Desde $2.090.000 COP', badge: 'Oferta' }
+const purchaseFlow = [
+  'Explora instrumentos o accesorios por familia.',
+  'Filtra por nombre, revisa precio y disponibilidad.',
+  'Confirma por WhatsApp con el articulo exacto ya precargado.'
 ];
-
-const whatsappNumber = '573000000000';
-const whatsappMessage = encodeURIComponent('Hola, quiero asesoria para elegir un instrumento.');
-const whatsAppLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 ---
 
 <Layout
-  title="Universo Musical | Tienda premium de instrumentos"
-  description="Landing premium de Universo Musical con servicios, instrumentos destacados y contacto directo por WhatsApp."
+  title="Universo Musical | Catalogo musical con compra por WhatsApp"
+  description="Explora instrumentos y accesorios de Universo Musical con inventario organizado, precios visibles y contacto directo por WhatsApp."
 >
-  <header class="site-header">
-    <div class="container nav-wrap">
-      <a class="brand" href="#inicio" aria-label="Ir al inicio de Universo Musical">
-        <span class="brand-mark" aria-hidden="true"></span>
-        <span class="brand-text display-font">Universo Musical</span>
-      </a>
-      <nav aria-label="Navegacion principal">
-        <ul class="nav-links" role="list">
-          <li><a href="#servicios">Servicios</a></li>
-          <li><a href="#instrumentos">Instrumentos</a></li>
-          <li><a href="#contacto">Contacto</a></li>
-        </ul>
-      </nav>
-      <a
-        class="btn btn-outline btn-header"
-        href={whatsAppLink}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Abrir WhatsApp para solicitar informacion"
-      >
-        WhatsApp
-      </a>
-    </div>
-  </header>
+  <SiteHeader currentPath="/" />
 
-  <main id="inicio">
-    <section class="section hero">
+  <main>
+    <section class="section hero-home">
       <div class="container hero-grid">
-        <div class="hero-content">
-          <p class="section-kicker">Tienda musical premium</p>
-          <h1>Instrumentos y servicios con sonido de escenario profesional.</h1>
-          <p class="hero-copy">
-            Equipamos artistas, academias y productores con instrumentos seleccionados y soporte tecnico
-            especializado para que cada nota suene a su maximo nivel.
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href={whatsAppLink} target="_blank" rel="noopener noreferrer">
-              Cotizar por WhatsApp
-            </a>
-            <a class="btn btn-outline" href="#instrumentos">Ver instrumentos</a>
-          </div>
-          <ul class="hero-metrics" role="list" aria-label="Metricas destacadas de la tienda">
-            <li>
-              <strong>+2.500</strong>
-              <span>instrumentos entregados</span>
-            </li>
-            <li>
-              <strong>24h</strong>
-              <span>respuesta comercial</span>
-            </li>
-            <li>
-              <strong>4.9/5</strong>
-              <span>satisfaccion de clientes</span>
-            </li>
-          </ul>
-        </div>
-
-        <div class="hero-art" aria-hidden="true">
-          <div class="halo halo-yellow"></div>
-          <div class="halo halo-red"></div>
-          <div class="sound-lines"></div>
-          <article class="hero-card hero-card-primary">
-            <p>Sesion Pro</p>
-            <span>Calibracion y set up en 24h</span>
-          </article>
-          <article class="hero-card hero-card-secondary">
-            <p>Serie Signature</p>
-            <span>Modelos premium de cuerdas y teclados</span>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="servicios" class="section">
-      <div class="container">
-        <header class="section-head">
-          <p class="section-kicker">Servicios</p>
-          <h2 class="section-title">Soporte integral para tu evolucion musical.</h2>
-          <p class="section-copy">
-            No solo vendemos instrumentos. Diseñamos una experiencia completa para que tu equipo siempre
-            este listo para estudiar, grabar o presentarte en vivo.
-          </p>
-        </header>
-
-        <div class="services-grid">
-          {
-            services.map((service, index) => (
-              <article class="service-card">
-                <span class="service-index">{String(index + 1).padStart(2, '0')}</span>
-                <h3>{service.title}</h3>
-                <p>{service.description}</p>
-              </article>
-            ))
-          }
-        </div>
-      </div>
-    </section>
-
-    <section id="instrumentos" class="section instruments-section">
-      <div class="container">
-        <header class="section-head">
-          <p class="section-kicker">Instrumentos</p>
-          <h2 class="section-title">Coleccion destacada por categoria.</h2>
-          <p class="section-copy">
-            Seleccion curada de modelos listos para escenario, estudio o academia. Cada referencia incluye
-            opciones de configuracion y asesoria previa.
-          </p>
-        </header>
-
-        <div class="instruments-grid">
-          {
-            instruments.map((instrument) => (
-              <article class="instrument-card">
-                <div class="instrument-visual" data-category={instrument.category}>
-                  <span class="instrument-badge">{instrument.badge}</span>
-                  <span class="instrument-line"></span>
-                  <span class="instrument-line"></span>
-                  <span class="instrument-line"></span>
-                </div>
-                <div class="instrument-body">
-                  <p class="instrument-category">{instrument.category}</p>
-                  <h3>{instrument.name}</h3>
-                  <p class="instrument-price">{instrument.priceLabel}</p>
-                </div>
-              </article>
-            ))
-          }
-        </div>
-      </div>
-    </section>
-
-    <section class="section trust-section">
-      <div class="container trust-card">
-        <div class="trust-copy">
-          <p class="section-kicker">Confianza sonora</p>
-          <h2 class="display-font">Probamos, calibramos y entregamos cada instrumento listo para tocar.</h2>
+        <div class="hero-copy">
+          <p class="eyebrow">Catalogo musical vivo</p>
+          <h1 class="display-font">Instrumentos y accesorios listos para vender mejor, sin saturar tu inicio.</h1>
           <p>
-            Nuestro equipo tecnico revisa cada detalle antes de la entrega para asegurar respuesta,
-            estabilidad y caracter sonoro desde el primer acorde.
+            Reordenamos la experiencia de Universo Musical para que la primera impresion sea clara, comercial
+            y rapida: una home que presenta la marca y dos vistas pensadas para explorar el inventario real
+            con criterio.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button button-primary" href={heroLink} target="_blank" rel="noreferrer">
+              Escribir a WhatsApp
+            </a>
+            <a class="button button-secondary" href="/instrumentos">Ver instrumentos</a>
+          </div>
+
+          <div class="hero-metrics">
+            <article>
+              <strong>{instrumentos.totalItems + accesorios.totalItems}</strong>
+              <span>referencias limpias en el catalogo</span>
+            </article>
+            <article>
+              <strong>{instrumentos.availableItems + accesorios.availableItems}</strong>
+              <span>con disponibilidad visible</span>
+            </article>
+            <article>
+              <strong>{WHATSAPP_DISPLAY}</strong>
+              <span>canal directo para cerrar la venta</span>
+            </article>
+          </div>
+        </div>
+
+        <div class="hero-panels">
+          <article class="overview-card panel instruments-card">
+            <p class="eyebrow">Instrumentos</p>
+            <h2 class="display-font">{instrumentos.totalItems} referencias</h2>
+            <p>Catalogo enfocado en cuerdas, teclados, percusion, vientos y audio con filtros para navegar rapido.</p>
+
+            <div class="family-pills">
+              {instrumentPreviewFamilies.map((family) => <span>{family.family}</span>)}
+            </div>
+
+            <a href="/instrumentos">Explorar instrumentos</a>
+          </article>
+
+          <article class="overview-card panel accessories-card">
+            <p class="eyebrow">Accesorios</p>
+            <h2 class="display-font">{accesorios.totalItems} referencias</h2>
+            <p>Acceso directo a encordados, estuches, cables y repuestos sin hacer interminable la pagina principal.</p>
+
+            <div class="family-pills">
+              {accessoryPreviewFamilies.map((family) => <span>{family.family}</span>)}
+            </div>
+
+            <a href="/accesorios">Explorar accesorios</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container stack">
+        <div class="section-head">
+          <p class="eyebrow">Arquitectura comercial</p>
+          <h2 class="display-font">Una home para orientar, dos catalogos para convertir.</h2>
+          <p class="section-copy">
+            La pagina ya no intenta meter todo en un solo scroll. Ahora separa el recorrido en puntos de
+            decision claros para que el usuario entre, entienda y escriba mas rapido.
           </p>
         </div>
-        <a class="btn btn-primary" href={whatsAppLink} target="_blank" rel="noopener noreferrer">
-          Hablar con un asesor
+
+        <div class="category-grid">
+          <article class="category-panel panel">
+            <div class="category-copy">
+              <p class="eyebrow">Vista 01</p>
+              <h3 class="display-font">Instrumentos</h3>
+              <p>
+                {instrumentos.availableItems} productos con disponibilidad visible y {instrumentos.pricedItems}{' '}
+                con precio publicado, organizados por familia y ordenados alfabeticamente.
+              </p>
+            </div>
+            <a class="button button-primary" href="/instrumentos">Ir al catalogo de instrumentos</a>
+          </article>
+
+          <article class="category-panel panel">
+            <div class="category-copy">
+              <p class="eyebrow">Vista 02</p>
+              <h3 class="display-font">Accesorios</h3>
+              <p>
+                {accesorios.availableItems} referencias disponibles y una navegacion pensada para encontrar
+                rapido cuerdas, estuches, cables y otros complementos.
+              </p>
+            </div>
+            <a class="button button-primary" href="/accesorios">Ir al catalogo de accesorios</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section benefits-section">
+      <div class="container stack">
+        <div class="section-head">
+          <p class="eyebrow">Mejoras UX</p>
+          <h2 class="display-font">Menos relleno, mas orientacion y mejores caminos de compra.</h2>
+        </div>
+
+        <div class="benefits-grid">
+          {
+            benefits.map((benefit, index) => (
+              <article class="benefit-card panel">
+                <span class="benefit-index">{String(index + 1).padStart(2, '0')}</span>
+                <h3>{benefit.title}</h3>
+                <p>{benefit.body}</p>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="section process-section">
+      <div class="container process-grid">
+        <div class="process-copy">
+          <p class="eyebrow">Como comprar</p>
+          <h2 class="display-font">El nuevo flujo elimina friccion desde la primera visita.</h2>
+          <p>
+            La experiencia fue replanteada para que el usuario no se pierda. Primero ubica la categoria,
+            luego filtra el producto y finalmente llega a WhatsApp con el mensaje listo.
+          </p>
+        </div>
+
+        <div class="process-list">
+          {
+            purchaseFlow.map((step, index) => (
+              <article class="process-item panel">
+                <strong>{index + 1}</strong>
+                <p>{step}</p>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact-strip">
+      <div class="container contact-card panel">
+        <div class="stack">
+          <p class="eyebrow">Canal confirmado</p>
+          <h2 class="display-font">Toda la conversion vive en WhatsApp.</h2>
+          <p>
+            En esta primera entrega dejamos afuera correo, direccion y formulario para no publicar datos
+            ficticios. El canal real y prioritario del negocio queda centralizado en {WHATSAPP_DISPLAY}.
+          </p>
+        </div>
+        <a class="button button-primary" href={heroLink} target="_blank" rel="noreferrer">
+          Abrir WhatsApp
         </a>
       </div>
     </section>
-
-    <section id="contacto" class="section contact-section">
-      <div class="container contact-grid">
-        <article class="contact-panel" aria-label="Datos de contacto de la tienda">
-          <p class="section-kicker">Contacto</p>
-          <h2 class="display-font">Hablemos de tu proximo setup musical.</h2>
-          <p>
-            Compartimos propuesta, disponibilidad y recomendaciones en minutos. Puedes escribirnos por
-            WhatsApp o enviar tu solicitud por correo.
-          </p>
-
-          <ul class="contact-list" role="list">
-            <li>
-              <strong>WhatsApp</strong>
-              <a href={whatsAppLink} target="_blank" rel="noopener noreferrer">+57 300 000 0000</a>
-            </li>
-            <li>
-              <strong>Email</strong>
-              <span>contacto@universomusical.com</span>
-            </li>
-            <li>
-              <strong>Direccion</strong>
-              <span>Calle 00 #00-00, Bogota, Colombia</span>
-            </li>
-            <li>
-              <strong>Horario</strong>
-              <span>Lun a Sab: 9:00 a.m. - 7:00 p.m.</span>
-            </li>
-          </ul>
-
-          <a class="btn btn-outline" href={whatsAppLink} target="_blank" rel="noopener noreferrer">
-            Abrir WhatsApp
-          </a>
-        </article>
-
-        <form id="lead-form" class="contact-form" aria-label="Formulario de contacto por correo">
-          <h3>Escribenos por correo</h3>
-          <p>Tu cliente de correo se abrira con el mensaje listo para enviar.</p>
-
-          <label class="field" for="nombre">
-            Nombre
-            <input id="nombre" name="nombre" type="text" required autocomplete="name" />
-          </label>
-
-          <label class="field" for="email">
-            Email
-            <input id="email" name="email" type="email" required autocomplete="email" />
-          </label>
-
-          <label class="field" for="mensaje">
-            Mensaje
-            <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
-          </label>
-
-          <button class="btn btn-primary" type="submit">Enviar por correo</button>
-          <p class="form-note">
-            Al enviar, se abrira tu aplicacion de correo con asunto y cuerpo completados automaticamente.
-          </p>
-        </form>
-      </div>
-    </section>
   </main>
+
+  <SiteFooter />
+  <WhatsAppFab />
 </Layout>
 
-<script is:inline>
-  const form = document.querySelector('#lead-form');
-
-  if (form) {
-    form.addEventListener('submit', (event) => {
-      event.preventDefault();
-
-      if (!form.reportValidity()) {
-        return;
-      }
-
-      const data = new FormData(form);
-      const nombre = String(data.get('nombre') || '').trim();
-      const email = String(data.get('email') || '').trim();
-      const mensaje = String(data.get('mensaje') || '').trim();
-
-      const bodyLines = [
-        `Nombre: ${nombre}`,
-        `Email: ${email}`,
-        '',
-        'Mensaje:',
-        mensaje,
-        '',
-        'Enviado desde la landing de Universo Musical.'
-      ];
-
-      const subject = encodeURIComponent('Solicitud desde la web - Universo Musical');
-      const body = encodeURIComponent(bodyLines.join('\n'));
-      window.location.href = `mailto:contacto@universomusical.com?subject=${subject}&body=${body}`;
-
-      form.reset();
-    });
-  }
-</script>
-
 <style>
-  .site-header {
-    position: sticky;
-    top: 0;
-    z-index: 20;
-    backdrop-filter: blur(8px);
-    background: linear-gradient(180deg, rgba(11, 11, 11, 0.9), rgba(11, 11, 11, 0.56));
-    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  }
-
-  .nav-wrap {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    min-height: 74px;
-  }
-
-  .brand {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-
-  .brand-mark {
-    width: 1.6rem;
-    height: 1.6rem;
-    border-radius: 0.45rem;
-    background: var(--gradient-accent);
-    box-shadow: 0 10px 24px rgba(217, 4, 41, 0.35);
-  }
-
-  .brand-text {
-    font-size: 1.35rem;
-    text-transform: uppercase;
-  }
-
-  .nav-links {
-    display: none;
-    gap: 1.25rem;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .nav-links a {
-    color: var(--color-ink-soft);
-    font-size: 0.92rem;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    transition: color var(--transition-fast);
-  }
-
-  .nav-links a:hover {
-    color: var(--color-yellow);
-  }
-
-  .btn-header {
-    display: none;
-  }
-
-  .hero {
-    position: relative;
-    overflow: hidden;
-    padding-top: clamp(3.2rem, 8vw, 7rem);
+  .hero-home {
+    padding-top: clamp(3rem, 8vw, 5.2rem);
   }
 
   .hero-grid {
     display: grid;
-    gap: 2rem;
-    align-items: center;
-  }
-
-  .hero-content {
-    display: grid;
-    gap: 1.35rem;
-  }
-
-  .hero h1 {
-    font-size: clamp(2.3rem, 7vw, 4.8rem);
-    max-width: 11.6ch;
-    text-wrap: balance;
+    gap: 1.25rem;
+    align-items: start;
   }
 
   .hero-copy {
+    display: grid;
+    gap: 1.1rem;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(3.2rem, 10vw, 7rem);
+    max-width: 10.6ch;
+  }
+
+  .hero-copy p:last-of-type {
     max-width: 60ch;
-    color: var(--color-ink-soft);
-    font-size: clamp(1rem, 2.2vw, 1.12rem);
+    color: var(--color-muted);
+    font-size: 1.02rem;
   }
 
   .hero-actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.85rem;
+    gap: 0.8rem;
   }
 
   .hero-metrics {
-    margin: 0;
-    padding: 0;
-    list-style: none;
     display: grid;
-    gap: 0.85rem;
-    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    gap: 0.8rem;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
   }
 
-  .hero-metrics li {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: var(--radius-card);
-    padding: 0.95rem 1rem;
+  .hero-metrics article {
+    padding: 1rem;
+    border-radius: 1.1rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.04);
   }
 
   .hero-metrics strong {
-    font-family: 'Oswald', sans-serif;
-    font-size: 1.35rem;
     display: block;
-    color: var(--color-yellow);
+    margin-bottom: 0.35rem;
+    font-size: 1.2rem;
+    color: var(--color-accent-soft);
   }
 
-  .hero-metrics span {
-    color: var(--color-ink-soft);
-    font-size: 0.84rem;
+  .hero-metrics span,
+  .section-copy {
+    color: var(--color-muted);
   }
 
-  .hero-art {
-    min-height: clamp(19rem, 44vw, 30rem);
+  .hero-panels {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .overview-card {
+    display: grid;
+    gap: 0.9rem;
     position: relative;
-    isolation: isolate;
-    border-radius: 30px;
-    background:
-      linear-gradient(160deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.02)),
-      linear-gradient(140deg, rgba(255, 209, 0, 0.15), rgba(217, 4, 41, 0.22));
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: var(--shadow-card);
     overflow: hidden;
   }
 
-  .halo {
+  .overview-card::after {
+    content: '';
     position: absolute;
-    border-radius: 50%;
-    filter: blur(8px);
-  }
-
-  .halo-yellow {
+    inset: auto -10% -20% auto;
     width: 14rem;
     height: 14rem;
-    background: radial-gradient(circle, rgba(255, 209, 0, 0.56) 0%, rgba(255, 209, 0, 0) 68%);
-    top: -3.5rem;
-    left: -2rem;
+    border-radius: 50%;
+    filter: blur(1rem);
+    opacity: 0.45;
   }
 
-  .halo-red {
-    width: 16rem;
-    height: 16rem;
-    background: radial-gradient(circle, rgba(217, 4, 41, 0.48) 0%, rgba(217, 4, 41, 0) 70%);
-    bottom: -4.5rem;
-    right: -2.5rem;
+  .instruments-card::after {
+    background: rgba(240, 173, 78, 0.28);
   }
 
-  .sound-lines {
-    position: absolute;
-    inset: 14% 18%;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 24px;
-    transform: rotate(-8deg);
+  .accessories-card::after {
+    background: rgba(35, 92, 112, 0.32);
   }
 
-  .hero-card {
-    position: absolute;
-    display: grid;
-    gap: 0.3rem;
-    width: min(80%, 280px);
-    background: rgba(11, 11, 11, 0.76);
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    border-radius: 16px;
-    padding: 1rem;
-    box-shadow: var(--shadow-card);
-    transition: transform var(--transition-medium);
+  .overview-card h2 {
+    font-size: clamp(2.4rem, 7vw, 4rem);
   }
 
-  .hero-card p {
-    font-weight: 800;
-    font-size: 1rem;
+  .overview-card p:last-of-type {
+    color: var(--color-muted);
+    max-width: 32ch;
   }
 
-  .hero-card span {
-    color: var(--color-ink-soft);
-    font-size: 0.86rem;
-  }
-
-  .hero-card-primary {
-    right: 1rem;
-    top: 1rem;
-  }
-
-  .hero-card-secondary {
-    left: 1rem;
-    bottom: 1rem;
-  }
-
-  .hero-art:hover .hero-card-primary {
-    transform: translateY(-4px);
-  }
-
-  .hero-art:hover .hero-card-secondary {
-    transform: translateY(4px);
-  }
-
-  .services-grid {
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-  }
-
-  .service-card {
-    background: linear-gradient(150deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
-    border: 1px solid rgba(255, 255, 255, 0.13);
-    border-radius: var(--radius-card);
-    padding: 1.2rem;
-    display: grid;
-    gap: 0.8rem;
-    transition:
-      border-color var(--transition-fast),
-      transform var(--transition-fast),
-      background-color var(--transition-fast);
-  }
-
-  .service-card:hover {
-    transform: translateY(-4px);
-    border-color: rgba(255, 209, 0, 0.55);
-    background-color: rgba(255, 255, 255, 0.06);
-  }
-
-  .service-index {
-    width: 2.4rem;
-    height: 2.4rem;
-    border-radius: 999px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 800;
-    font-size: 0.78rem;
-    color: var(--color-black);
-    background: var(--gradient-accent);
-  }
-
-  .service-card h3 {
-    font-size: 1.35rem;
-  }
-
-  .service-card p {
-    color: var(--color-ink-soft);
-    font-size: 0.95rem;
-  }
-
-  .instruments-section {
-    background:
-      radial-gradient(circle at 12% 20%, rgba(217, 4, 41, 0.14), rgba(217, 4, 41, 0) 45%),
-      radial-gradient(circle at 86% 15%, rgba(255, 209, 0, 0.13), rgba(255, 209, 0, 0) 42%);
-  }
-
-  .instruments-grid {
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-  }
-
-  .instrument-card {
-    background: rgba(17, 17, 17, 0.88);
-    border: 1px solid rgba(255, 255, 255, 0.13);
-    border-radius: var(--radius-card);
-    overflow: hidden;
-    transition:
-      transform var(--transition-fast),
-      border-color var(--transition-fast),
-      box-shadow var(--transition-fast);
-  }
-
-  .instrument-card:hover {
-    transform: translateY(-4px);
-    border-color: rgba(255, 209, 0, 0.55);
-    box-shadow: var(--shadow-card);
-  }
-
-  .instrument-visual {
-    position: relative;
-    min-height: 10rem;
-    padding: 0.9rem;
-    display: grid;
-    align-content: end;
-    gap: 0.35rem;
-  }
-
-  .instrument-visual[data-category='Cuerdas'] {
-    background: linear-gradient(145deg, rgba(255, 209, 0, 0.35), rgba(17, 17, 17, 0.25) 60%, rgba(217, 4, 41, 0.4));
-  }
-
-  .instrument-visual[data-category='Teclados'] {
-    background: linear-gradient(145deg, rgba(217, 4, 41, 0.42), rgba(17, 17, 17, 0.2) 60%, rgba(255, 209, 0, 0.28));
-  }
-
-  .instrument-visual[data-category='Percusion'] {
-    background: linear-gradient(145deg, rgba(255, 209, 0, 0.3), rgba(17, 17, 17, 0.2) 60%, rgba(217, 4, 41, 0.45));
-  }
-
-  .instrument-visual[data-category='Viento'] {
-    background: linear-gradient(145deg, rgba(217, 4, 41, 0.36), rgba(17, 17, 17, 0.25) 58%, rgba(255, 209, 0, 0.35));
-  }
-
-  .instrument-badge {
-    position: absolute;
-    top: 0.75rem;
-    left: 0.75rem;
-    border-radius: 999px;
-    font-size: 0.72rem;
-    font-weight: 800;
-    padding: 0.3rem 0.62rem;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    color: var(--color-black);
-    background: var(--color-yellow);
-  }
-
-  .instrument-line {
-    width: 100%;
-    height: 0.42rem;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.42);
-  }
-
-  .instrument-line:nth-child(3) {
-    width: 75%;
-    background: rgba(255, 255, 255, 0.31);
-  }
-
-  .instrument-line:nth-child(4) {
-    width: 55%;
-    background: rgba(255, 255, 255, 0.26);
-  }
-
-  .instrument-body {
-    padding: 1rem 1rem 1.1rem;
-    display: grid;
-    gap: 0.4rem;
-  }
-
-  .instrument-category {
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    font-size: 0.72rem;
-    color: var(--color-yellow);
-    font-weight: 800;
-  }
-
-  .instrument-body h3 {
-    font-size: 1.2rem;
-  }
-
-  .instrument-price {
-    color: var(--color-ink-soft);
-    font-size: 0.9rem;
-    font-weight: 600;
-  }
-
-  .trust-section {
-    padding-top: 1.5rem;
-  }
-
-  .trust-card {
-    border-radius: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    background:
-      linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.015)),
-      linear-gradient(120deg, rgba(255, 209, 0, 0.16), rgba(217, 4, 41, 0.2));
-    padding: clamp(1.4rem, 4vw, 2.4rem);
-    display: grid;
-    gap: 1.5rem;
-    align-items: center;
-    box-shadow: var(--shadow-card);
-  }
-
-  .trust-copy {
-    display: grid;
-    gap: 0.8rem;
-  }
-
-  .trust-copy h2 {
-    font-size: clamp(1.7rem, 3.6vw, 2.8rem);
-    max-width: 16ch;
-  }
-
-  .trust-copy p {
-    color: var(--color-ink-soft);
-    max-width: 60ch;
-  }
-
-  .contact-section {
-    padding-top: 2rem;
-  }
-
-  .contact-grid {
-    display: grid;
-    gap: 1rem;
-  }
-
-  .contact-panel,
-  .contact-form {
-    border-radius: var(--radius-card);
-    padding: clamp(1.2rem, 3.2vw, 2rem);
-    background: rgba(17, 17, 17, 0.86);
-    border: 1px solid rgba(255, 255, 255, 0.13);
-    box-shadow: var(--shadow-card);
-  }
-
-  .contact-panel {
-    display: grid;
-    gap: 1rem;
-  }
-
-  .contact-panel h2 {
-    font-size: clamp(1.8rem, 4.4vw, 3rem);
-    max-width: 12ch;
-  }
-
-  .contact-panel p {
-    color: var(--color-ink-soft);
-  }
-
-  .contact-list {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    display: grid;
-    gap: 0.8rem;
-  }
-
-  .contact-list li {
-    display: grid;
-    gap: 0.2rem;
-  }
-
-  .contact-list strong {
-    color: var(--color-yellow);
-    font-size: 0.78rem;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
-  }
-
-  .contact-list a {
+  .overview-card a {
+    color: var(--color-accent-soft);
     font-weight: 700;
   }
 
-  .contact-form {
+  .family-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+  }
+
+  .family-pills span {
+    min-height: 2rem;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem 0.7rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.07);
+    color: var(--color-foreground);
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .category-grid,
+  .benefits-grid {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .category-panel,
+  .benefit-card {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .category-copy,
+  .process-copy {
+    display: grid;
+    gap: 0.8rem;
+  }
+
+  .category-panel h3,
+  .benefit-card h3 {
+    font-size: 1.7rem;
+  }
+
+  .category-panel p,
+  .benefit-card p,
+  .process-copy p,
+  .contact-card p {
+    color: var(--color-muted);
+  }
+
+  .benefit-index {
+    width: 2.4rem;
+    height: 2.4rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    color: var(--color-base);
+    background: linear-gradient(135deg, var(--color-accent), var(--color-secondary));
+    font-weight: 800;
+  }
+
+  .process-grid {
+    display: grid;
+    gap: 1rem;
+    align-items: start;
+  }
+
+  .process-copy h2,
+  .contact-card h2,
+  .section-head h2 {
+    font-size: clamp(2.6rem, 7vw, 4.4rem);
+  }
+
+  .process-list {
     display: grid;
     gap: 0.9rem;
   }
 
-  .contact-form h3 {
-    font-size: 1.6rem;
-  }
-
-  .contact-form > p {
-    color: var(--color-ink-soft);
-    font-size: 0.92rem;
-  }
-
-  .field {
+  .process-item {
     display: grid;
-    gap: 0.45rem;
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: var(--color-white);
+    grid-template-columns: auto 1fr;
+    gap: 0.85rem;
+    align-items: start;
   }
 
-  .field input,
-  .field textarea {
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    background: rgba(11, 11, 11, 0.6);
-    color: var(--color-white);
-    font: inherit;
-    padding: 0.78rem 0.85rem;
-    transition:
-      border-color var(--transition-fast),
-      background-color var(--transition-fast);
+  .process-item strong {
+    width: 2.4rem;
+    height: 2.4rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    color: var(--color-base);
+    background: var(--color-accent);
   }
 
-  .field textarea {
-    resize: vertical;
-    min-height: 8.4rem;
+  .contact-card {
+    display: grid;
+    gap: 1rem;
+    align-items: center;
   }
 
-  .field input:hover,
-  .field textarea:hover,
-  .field input:focus,
-  .field textarea:focus {
-    border-color: rgba(255, 209, 0, 0.7);
-    background: rgba(11, 11, 11, 0.75);
-  }
-
-  .form-note {
-    color: var(--color-ink-soft);
-    font-size: 0.82rem;
-  }
-
-  @media (min-width: 760px) {
-    .nav-links {
-      display: flex;
+  @media (min-width: 900px) {
+    .hero-grid,
+    .process-grid,
+    .contact-card {
+      grid-template-columns: minmax(0, 1.1fr) minmax(18rem, 0.9fr);
     }
 
-    .btn-header {
-      display: inline-flex;
-    }
-
-    .hero-grid {
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 2.2rem;
-    }
-
-    .trust-card {
-      grid-template-columns: 1fr auto;
-    }
-
-    .contact-grid {
-      grid-template-columns: 1fr 1fr;
-      gap: 1.2rem;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .nav-wrap {
-      min-height: 82px;
-    }
-
-    .hero {
-      padding-top: clamp(3rem, 7vw, 6rem);
-    }
-
-    .hero-grid {
-      gap: 3rem;
-    }
-
-    .services-grid,
-    .instruments-grid {
-      gap: 1.2rem;
-    }
-
-    .services-grid {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-
-    .instruments-grid {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+    .category-grid,
+    .benefits-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 </style>
