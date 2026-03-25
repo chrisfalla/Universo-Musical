@@ -33,23 +33,24 @@ const {
 
 <style is:global>
   :root {
-    --color-base: #0b0f16;
-    --color-surface: #121925;
-    --color-surface-alt: #182233;
-    --color-foreground: #f4efe6;
-    --color-muted: #b9c5d6;
-    --color-accent: #f0ad4e;
-    --color-accent-soft: #ffd89d;
-    --color-accent-strong: #ffc96b;
-    --color-secondary: #e05b3e;
+    --color-base: #0b0b0b;
+    --color-surface: #121212;
+    --color-surface-alt: #1a1a1a;
+    --color-foreground: #fff7ed;
+    --color-muted: #e4d8c9;
+    --color-accent: #ffd100;
+    --color-accent-soft: #ffe56a;
+    --color-accent-strong: #fff0ad;
+    --color-secondary: #d90429;
     --font-body: 'Sora', sans-serif;
     --font-display: 'Bebas Neue', sans-serif;
     --gradient-page:
-      radial-gradient(circle at top left, rgba(240, 173, 78, 0.18), transparent 30%),
-      radial-gradient(circle at top right, rgba(35, 92, 112, 0.22), transparent 28%),
-      linear-gradient(180deg, #0b0f16, #111723 55%, #0d121a);
-    --shadow-card: 0 1.6rem 3.4rem rgba(0, 0, 0, 0.3);
-    --shadow-soft: 0 1rem 2rem rgba(0, 0, 0, 0.18);
+      radial-gradient(circle at 12% 10%, rgba(255, 209, 0, 0.2), transparent 28%),
+      radial-gradient(circle at 86% 14%, rgba(217, 4, 41, 0.24), transparent 32%),
+      radial-gradient(circle at 50% 100%, rgba(255, 209, 0, 0.08), transparent 34%),
+      linear-gradient(180deg, #050505, #0d0d0d 54%, #090909);
+    --shadow-card: 0 1.7rem 3.6rem rgba(0, 0, 0, 0.42);
+    --shadow-soft: 0 1rem 2rem rgba(0, 0, 0, 0.24);
     --container-width: 1180px;
     --transition-fast: 180ms ease;
     --transition-medium: 260ms ease;
@@ -123,10 +124,11 @@ const {
 
   .panel {
     border-radius: 1.6rem;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02)),
-      rgba(18, 25, 37, 0.85);
+      linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)),
+      linear-gradient(145deg, rgba(255, 209, 0, 0.06), rgba(217, 4, 41, 0.08)),
+      rgba(18, 18, 18, 0.9);
     box-shadow: var(--shadow-card);
     padding: clamp(1.2rem, 3vw, 1.8rem);
   }
@@ -163,23 +165,23 @@ const {
 
   .button-primary {
     color: var(--color-base);
-    background: linear-gradient(135deg, var(--color-accent), var(--color-secondary));
-    box-shadow: 0 0.9rem 1.8rem rgba(224, 91, 62, 0.2);
+    background: linear-gradient(135deg, var(--color-accent), #ffb703 38%, var(--color-secondary));
+    box-shadow: 0 0.9rem 1.8rem rgba(217, 4, 41, 0.28);
   }
 
   .button-primary:hover {
-    box-shadow: 0 1.1rem 2.2rem rgba(224, 91, 62, 0.3);
+    box-shadow: 0 1.1rem 2.2rem rgba(255, 209, 0, 0.22);
   }
 
   .button-secondary {
-    border-color: rgba(255, 255, 255, 0.14);
+    border-color: rgba(255, 255, 255, 0.2);
     background: rgba(255, 255, 255, 0.05);
     color: var(--color-foreground);
   }
 
   .button-secondary:hover {
-    border-color: rgba(240, 173, 78, 0.28);
-    background: rgba(240, 173, 78, 0.09);
+    border-color: rgba(255, 209, 0, 0.48);
+    background: rgba(217, 4, 41, 0.16);
   }
 
   :where(a, button, input, textarea):focus-visible {

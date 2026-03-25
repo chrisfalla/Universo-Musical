@@ -10,10 +10,10 @@ const whatsAppLink = createWhatsAppLink(
   <div class="container footer-shell">
     <div class="footer-copy">
       <p class="eyebrow">Contacto directo</p>
-      <h2 class="display-font">Compra, consulta y confirma tu inventario por WhatsApp.</h2>
+      <h2 class="display-font">Una web clara arriba. Una conversacion directa abajo.</h2>
       <p>
-        Universo Musical concentra esta primera version de la web en un canal simple y rapido para
-        convertir mejor: atencion directa al numero {WHATSAPP_DISPLAY}.
+        Universo Musical deja el cierre comercial en el canal mas agil para el negocio: atencion directa
+        por WhatsApp al numero {WHATSAPP_DISPLAY}.
       </p>
     </div>
 
@@ -35,11 +35,13 @@ const whatsAppLink = createWhatsAppLink(
     display: grid;
     gap: 1.4rem;
     padding: clamp(1.35rem, 3vw, 2.2rem);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 1.7rem;
     background:
-      linear-gradient(140deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
-      linear-gradient(120deg, rgba(240, 173, 78, 0.12), rgba(224, 91, 62, 0.08), rgba(35, 92, 112, 0.12));
+      linear-gradient(140deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.02)),
+      radial-gradient(circle at left top, rgba(255, 209, 0, 0.14), transparent 34%),
+      radial-gradient(circle at right bottom, rgba(217, 4, 41, 0.18), transparent 40%),
+      #101010;
     box-shadow: var(--shadow-card);
   }
 

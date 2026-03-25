@@ -54,8 +54,10 @@ const whatsAppLink = createWhatsAppLink(
     top: 0;
     z-index: 30;
     backdrop-filter: blur(16px);
-    background: linear-gradient(180deg, rgba(11, 15, 22, 0.94), rgba(11, 15, 22, 0.78));
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background:
+      linear-gradient(180deg, rgba(5, 5, 5, 0.96), rgba(5, 5, 5, 0.82)),
+      linear-gradient(90deg, rgba(255, 209, 0, 0.1), rgba(217, 4, 41, 0.12));
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   }
 
   .header-shell {
@@ -86,8 +88,8 @@ const whatsAppLink = createWhatsAppLink(
     color: var(--color-base);
     background:
       linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent),
-      linear-gradient(135deg, var(--color-accent), var(--color-secondary));
-    box-shadow: 0 0.95rem 2rem rgba(240, 173, 78, 0.28);
+      linear-gradient(135deg, var(--color-accent), #ffb703 45%, var(--color-secondary));
+    box-shadow: 0 0.95rem 2rem rgba(217, 4, 41, 0.3);
   }
 
   .brand-copy {
@@ -139,7 +141,7 @@ const whatsAppLink = createWhatsAppLink(
   .nav-link:hover,
   .nav-link.is-active {
     color: var(--color-foreground);
-    background: rgba(255, 255, 255, 0.08);
+    background: linear-gradient(135deg, rgba(255, 209, 0, 0.14), rgba(217, 4, 41, 0.18));
   }
 
   .header-cta {

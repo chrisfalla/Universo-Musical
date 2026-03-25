@@ -19,150 +19,155 @@ const accessoryPreviewFamilies = accesorios.familySummaries
   .filter((family) => family.family !== 'Otros')
   .slice(0, 4);
 
-const benefits = [
+const heroProofs = [
+  'Inicio orientado a marca y decision.',
+  'Catalogos separados para explorar sin ruido.',
+  'WhatsApp visible en los momentos clave.'
+];
+
+const routeCards = [
   {
-    title: 'Inventario real y ordenado',
-    body: 'La web ahora prioriza lo que si existe en bodega y lo presenta por familias para que encontrar sea mas facil.'
+    eyebrow: 'Instrumentos',
+    title: 'Explora por familia en lugar de perderte en una sola pagina eterna.',
+    body: 'La vista de instrumentos concentra la busqueda en un espacio mas util para cuerdas, teclados, percusion, vientos y audio.',
+    href: '/instrumentos',
+    cta: 'Abrir instrumentos',
+    families: instrumentPreviewFamilies,
+    tone: 'tone-yellow'
   },
   {
-    title: 'Compra conversacional',
-    body: 'Cada vista lleva a WhatsApp con el producto exacto, asi la cotizacion arranca con contexto y sin vueltas.'
-  },
-  {
-    title: 'Disponibilidad visible',
-    body: 'Mostramos precios y estados de inventario cuando el dato es valido, sin saturar la home con cientos de referencias.'
+    eyebrow: 'Accesorios',
+    title: 'Resuelve compras complementarias en una entrada rapida y mucho mas clara.',
+    body: 'La vista de accesorios ordena encordados, estuches, cables y repuestos sin sobrecargar la primera impresion de la web.',
+    href: '/accesorios',
+    cta: 'Abrir accesorios',
+    families: accessoryPreviewFamilies,
+    tone: 'tone-red'
   }
 ];
 
-const purchaseFlow = [
-  'Explora instrumentos o accesorios por familia.',
-  'Filtra por nombre, revisa precio y disponibilidad.',
-  'Confirma por WhatsApp con el articulo exacto ya precargado.'
+const experiencePoints = [
+  {
+    title: 'Mensaje que no envejece',
+    body: 'Quitamos cifras exactas del inicio para que la home siga vigente aunque manana entren nuevas referencias al inventario.'
+  },
+  {
+    title: 'Marca mucho mas fiel',
+    body: 'La direccion visual vuelve a rojo, amarillo, negro y blanco con contraste fuerte, acentos claros y un aire mas musical.'
+  },
+  {
+    title: 'Lectura mas rapida',
+    body: 'La jerarquia ahora guia primero a entender la marca, luego a elegir la ruta correcta y por ultimo a escribir por WhatsApp.'
+  }
+];
+
+const shoppingFlow = [
+  'El usuario entra y entiende de inmediato que la web separa instrumentos y accesorios para orientarlo mejor.',
+  'Cada ruta lo lleva a una vista especializada donde puede explorar familias sin pelear con una portada saturada.',
+  'Desde ahi el paso natural es WhatsApp, ya con el contexto suficiente para cotizar o confirmar disponibilidad.'
 ];
 ---
 
 <Layout
   title="Universo Musical | Catalogo musical con compra por WhatsApp"
-  description="Explora instrumentos y accesorios de Universo Musical con inventario organizado, precios visibles y contacto directo por WhatsApp."
+  description="Explora instrumentos y accesorios de Universo Musical con una home mas clara, identidad visual de marca y contacto directo por WhatsApp."
 >
   <SiteHeader currentPath="/" />
 
   <main>
     <section class="section hero-home">
-      <div class="container hero-grid">
+      <div class="container hero-shell">
         <div class="hero-copy">
-          <p class="eyebrow">Catalogo musical vivo</p>
-          <h1 class="display-font">Instrumentos y accesorios listos para vender mejor, sin saturar tu inicio.</h1>
-          <p>
-            Reordenamos la experiencia de Universo Musical para que la primera impresion sea clara, comercial
-            y rapida: una home que presenta la marca y dos vistas pensadas para explorar el inventario real
-            con criterio.
+          <p class="eyebrow">Universo Musical</p>
+          <h1 class="display-font">Una pagina de inicio que suena a marca, no a hoja de inventario.</h1>
+          <p class="hero-intro">
+            La nueva home deja de perseguir cifras exactas y se convierte en una entrada mas atemporal:
+            presenta el negocio con fuerza, orienta al usuario rapido y deja el detalle del catalogo donde
+            realmente aporta valor.
           </p>
 
           <div class="hero-actions">
             <a class="button button-primary" href={heroLink} target="_blank" rel="noreferrer">
               Escribir a WhatsApp
             </a>
-            <a class="button button-secondary" href="/instrumentos">Ver instrumentos</a>
+            <a class="button button-secondary" href="/instrumentos">Ver catalogo</a>
           </div>
 
-          <div class="hero-metrics">
-            <article>
-              <strong>{instrumentos.totalItems + accesorios.totalItems}</strong>
-              <span>referencias limpias en el catalogo</span>
-            </article>
-            <article>
-              <strong>{instrumentos.availableItems + accesorios.availableItems}</strong>
-              <span>con disponibilidad visible</span>
-            </article>
-            <article>
-              <strong>{WHATSAPP_DISPLAY}</strong>
-              <span>canal directo para cerrar la venta</span>
-            </article>
-          </div>
+          <ul class="hero-proof" role="list">
+            {
+              heroProofs.map((proof) => (
+                <li>
+                  <span class="hero-proof-mark" aria-hidden="true"></span>
+                  <p>{proof}</p>
+                </li>
+              ))
+            }
+          </ul>
         </div>
 
-        <div class="hero-panels">
-          <article class="overview-card panel instruments-card">
-            <p class="eyebrow">Instrumentos</p>
-            <h2 class="display-font">{instrumentos.totalItems} referencias</h2>
-            <p>Catalogo enfocado en cuerdas, teclados, percusion, vientos y audio con filtros para navegar rapido.</p>
-
-            <div class="family-pills">
-              {instrumentPreviewFamilies.map((family) => <span>{family.family}</span>)}
-            </div>
-
-            <a href="/instrumentos">Explorar instrumentos</a>
+        <div class="hero-stage" aria-label="Resumen visual de la experiencia del sitio">
+          <article class="stage-lead">
+            <span class="stage-chip">Inicio renovado</span>
+            <h2 class="display-font">Rojo, amarillo, negro y blanco en una composicion mucho mas intencional.</h2>
+            <p>La home inspira, el catalogo ordena y WhatsApp concreta la conversacion.</p>
           </article>
 
-          <article class="overview-card panel accessories-card">
-            <p class="eyebrow">Accesorios</p>
-            <h2 class="display-font">{accesorios.totalItems} referencias</h2>
-            <p>Acceso directo a encordados, estuches, cables y repuestos sin hacer interminable la pagina principal.</p>
+          <div class="stage-route-grid">
+            <article class="stage-route tone-yellow">
+              <p class="eyebrow">Instrumentos</p>
+              <div class="family-pills">
+                {instrumentPreviewFamilies.map((family) => <span>{family.family}</span>)}
+              </div>
+              <a href="/instrumentos">Entrar a instrumentos</a>
+            </article>
 
-            <div class="family-pills">
-              {accessoryPreviewFamilies.map((family) => <span>{family.family}</span>)}
-            </div>
+            <article class="stage-route tone-red">
+              <p class="eyebrow">Accesorios</p>
+              <div class="family-pills">
+                {accessoryPreviewFamilies.map((family) => <span>{family.family}</span>)}
+              </div>
+              <a href="/accesorios">Entrar a accesorios</a>
+            </article>
+          </div>
 
-            <a href="/accesorios">Explorar accesorios</a>
+          <article class="stage-ticket">
+            <span>Canal principal</span>
+            <strong>{WHATSAPP_DISPLAY}</strong>
+            <p>Atencion directa para cotizar, resolver dudas y confirmar disponibilidad.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section">
+    <section class="section routes-section">
       <div class="container stack">
-        <div class="section-head">
-          <p class="eyebrow">Arquitectura comercial</p>
-          <h2 class="display-font">Una home para orientar, dos catalogos para convertir.</h2>
+        <div class="section-head section-head-wide">
+          <p class="eyebrow">Rutas de entrada</p>
+          <h2 class="display-font">La pagina principal ya no se rompe cuando el inventario cambia.</h2>
           <p class="section-copy">
-            La pagina ya no intenta meter todo en un solo scroll. Ahora separa el recorrido en puntos de
-            decision claros para que el usuario entre, entienda y escriba mas rapido.
+            Quitamos bloques dependientes de cantidades exactas y convertimos el inicio en un punto de
+            orientacion permanente. El discurso de la marca se mantiene firme mientras el catalogo puede
+            seguir creciendo.
           </p>
         </div>
 
-        <div class="category-grid">
-          <article class="category-panel panel">
-            <div class="category-copy">
-              <p class="eyebrow">Vista 01</p>
-              <h3 class="display-font">Instrumentos</h3>
-              <p>
-                {instrumentos.availableItems} productos con disponibilidad visible y {instrumentos.pricedItems}{' '}
-                con precio publicado, organizados por familia y ordenados alfabeticamente.
-              </p>
-            </div>
-            <a class="button button-primary" href="/instrumentos">Ir al catalogo de instrumentos</a>
-          </article>
-
-          <article class="category-panel panel">
-            <div class="category-copy">
-              <p class="eyebrow">Vista 02</p>
-              <h3 class="display-font">Accesorios</h3>
-              <p>
-                {accesorios.availableItems} referencias disponibles y una navegacion pensada para encontrar
-                rapido cuerdas, estuches, cables y otros complementos.
-              </p>
-            </div>
-            <a class="button button-primary" href="/accesorios">Ir al catalogo de accesorios</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section benefits-section">
-      <div class="container stack">
-        <div class="section-head">
-          <p class="eyebrow">Mejoras UX</p>
-          <h2 class="display-font">Menos relleno, mas orientacion y mejores caminos de compra.</h2>
-        </div>
-
-        <div class="benefits-grid">
+        <div class="route-grid">
           {
-            benefits.map((benefit, index) => (
-              <article class="benefit-card panel">
-                <span class="benefit-index">{String(index + 1).padStart(2, '0')}</span>
-                <h3>{benefit.title}</h3>
-                <p>{benefit.body}</p>
+            routeCards.map((route) => (
+              <article class:list={['route-card', 'panel', route.tone]}>
+                <div class="route-copy">
+                  <p class="eyebrow">{route.eyebrow}</p>
+                  <h3 class="display-font">{route.title}</h3>
+                  <p>{route.body}</p>
+                </div>
+
+                <div class="family-pills">
+                  {route.families.map((family) => <span>{family.family}</span>)}
+                </div>
+
+                <a class="button button-primary route-link" href={route.href}>
+                  {route.cta}
+                </a>
               </article>
             ))
           }
@@ -170,21 +175,42 @@ const purchaseFlow = [
       </div>
     </section>
 
-    <section class="section process-section">
-      <div class="container process-grid">
-        <div class="process-copy">
-          <p class="eyebrow">Como comprar</p>
-          <h2 class="display-font">El nuevo flujo elimina friccion desde la primera visita.</h2>
-          <p>
-            La experiencia fue replanteada para que el usuario no se pierda. Primero ubica la categoria,
-            luego filtra el producto y finalmente llega a WhatsApp con el mensaje listo.
+    <section class="section experience-section">
+      <div class="container stack">
+        <div class="section-head">
+          <p class="eyebrow">Decisiones UX</p>
+          <h2 class="display-font">Menos cifras, mas criterio visual y una lectura mucho mas comercial.</h2>
+          <p class="section-copy">
+            Esta nueva interfaz usa contraste alto, bloques mejor definidos y llamadas a la accion mas
+            visibles para que el usuario entienda rapido por donde debe seguir.
           </p>
         </div>
 
-        <div class="process-list">
+        <div class="experience-grid">
           {
-            purchaseFlow.map((step, index) => (
-              <article class="process-item panel">
+            experiencePoints.map((point, index) => (
+              <article class="experience-card panel">
+                <span class="experience-index">{String(index + 1).padStart(2, '0')}</span>
+                <h3>{point.title}</h3>
+                <p>{point.body}</p>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="section flow-section">
+      <div class="container flow-shell panel">
+        <div class="flow-head">
+          <p class="eyebrow">Recorrido ideal</p>
+          <h2 class="display-font">Un flujo corto, entendible y pensado para cerrar por WhatsApp.</h2>
+        </div>
+
+        <div class="flow-grid">
+          {
+            shoppingFlow.map((step, index) => (
+              <article class="flow-step">
                 <strong>{index + 1}</strong>
                 <p>{step}</p>
               </article>
@@ -195,15 +221,16 @@ const purchaseFlow = [
     </section>
 
     <section class="section contact-strip">
-      <div class="container contact-card panel">
-        <div class="stack">
-          <p class="eyebrow">Canal confirmado</p>
-          <h2 class="display-font">Toda la conversion vive en WhatsApp.</h2>
+      <div class="container contact-card">
+        <div class="contact-copy stack">
+          <p class="eyebrow">WhatsApp primero</p>
+          <h2 class="display-font">Cuando el inventario crece, la home sigue firme y la conversacion sigue simple.</h2>
           <p>
-            En esta primera entrega dejamos afuera correo, direccion y formulario para no publicar datos
-            ficticios. El canal real y prioritario del negocio queda centralizado en {WHATSAPP_DISPLAY}.
+            El inicio ya no promete cantidades exactas. Promete una experiencia clara, una ruta directa al
+            catalogo y un canal real para convertir.
           </p>
         </div>
+
         <a class="button button-primary" href={heroLink} target="_blank" rel="noreferrer">
           Abrir WhatsApp
         </a>
@@ -217,10 +244,23 @@ const purchaseFlow = [
 
 <style>
   .hero-home {
-    padding-top: clamp(3rem, 8vw, 5.2rem);
+    position: relative;
+    overflow: hidden;
+    padding-top: clamp(3rem, 8vw, 5.6rem);
   }
 
-  .hero-grid {
+  .hero-home::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(120deg, rgba(255, 209, 0, 0.06), transparent 34%),
+      linear-gradient(300deg, rgba(217, 4, 41, 0.08), transparent 36%);
+  }
+
+  .hero-shell {
+    position: relative;
     display: grid;
     gap: 1.25rem;
     align-items: start;
@@ -228,18 +268,18 @@ const purchaseFlow = [
 
   .hero-copy {
     display: grid;
-    gap: 1.1rem;
+    gap: 1.15rem;
   }
 
   .hero-copy h1 {
-    font-size: clamp(3.2rem, 10vw, 7rem);
-    max-width: 10.6ch;
+    font-size: clamp(3.8rem, 12vw, 7.8rem);
+    max-width: 8.3ch;
   }
 
-  .hero-copy p:last-of-type {
-    max-width: 60ch;
+  .hero-intro {
+    max-width: 58ch;
     color: var(--color-muted);
-    font-size: 1.02rem;
+    font-size: 1.03rem;
   }
 
   .hero-actions {
@@ -248,72 +288,144 @@ const purchaseFlow = [
     gap: 0.8rem;
   }
 
-  .hero-metrics {
+  .hero-proof {
+    margin: 0;
+    padding: 0;
+    list-style: none;
     display: grid;
-    gap: 0.8rem;
-    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    gap: 0.75rem;
   }
 
-  .hero-metrics article {
-    padding: 1rem;
-    border-radius: 1.1rem;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+  .hero-proof li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.8rem;
+    align-items: start;
+    padding: 0.95rem 1rem;
+    border-radius: 1.2rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
     background: rgba(255, 255, 255, 0.04);
   }
 
-  .hero-metrics strong {
-    display: block;
-    margin-bottom: 0.35rem;
-    font-size: 1.2rem;
-    color: var(--color-accent-soft);
+  .hero-proof-mark {
+    width: 0.85rem;
+    height: 0.85rem;
+    margin-top: 0.28rem;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--color-accent), var(--color-secondary));
+    box-shadow: 0 0 0 0.35rem rgba(255, 209, 0, 0.12);
   }
 
-  .hero-metrics span,
-  .section-copy {
+  .hero-stage {
+    position: relative;
+    display: grid;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background:
+      radial-gradient(circle at top left, rgba(255, 209, 0, 0.16), transparent 30%),
+      radial-gradient(circle at bottom right, rgba(217, 4, 41, 0.22), transparent 34%),
+      linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)),
+      #090909;
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .hero-stage::before,
+  .hero-stage::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(16px);
+    opacity: 0.56;
+    pointer-events: none;
+  }
+
+  .hero-stage::before {
+    width: 12rem;
+    height: 12rem;
+    top: -2.5rem;
+    left: -2rem;
+    background: radial-gradient(circle, rgba(255, 209, 0, 0.36), transparent 70%);
+  }
+
+  .hero-stage::after {
+    width: 13rem;
+    height: 13rem;
+    right: -2rem;
+    bottom: -3rem;
+    background: radial-gradient(circle, rgba(217, 4, 41, 0.42), transparent 70%);
+  }
+
+  .stage-lead,
+  .stage-route,
+  .stage-ticket {
+    position: relative;
+    z-index: 1;
+  }
+
+  .stage-lead {
+    display: grid;
+    gap: 0.8rem;
+    padding: 1.35rem;
+    border-radius: 1.6rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)),
+      rgba(8, 8, 8, 0.84);
+  }
+
+  .stage-chip {
+    justify-self: start;
+    min-height: 2rem;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem 0.8rem;
+    border-radius: 999px;
+    color: var(--color-base);
+    background: var(--color-accent);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .stage-lead h2 {
+    font-size: clamp(2.7rem, 7vw, 4.8rem);
+    max-width: 8.6ch;
+  }
+
+  .stage-lead p:last-child {
+    max-width: 44ch;
     color: var(--color-muted);
   }
 
-  .hero-panels {
+  .stage-route-grid {
     display: grid;
     gap: 1rem;
   }
 
-  .overview-card {
+  .stage-route {
     display: grid;
-    gap: 0.9rem;
-    position: relative;
-    overflow: hidden;
+    gap: 0.8rem;
+    padding: 1rem;
+    border-radius: 1.35rem;
+    background: rgba(10, 10, 10, 0.86);
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
 
-  .overview-card::after {
-    content: '';
-    position: absolute;
-    inset: auto -10% -20% auto;
-    width: 14rem;
-    height: 14rem;
-    border-radius: 50%;
-    filter: blur(1rem);
-    opacity: 0.45;
+  .tone-yellow {
+    box-shadow: inset 0 0 0 1px rgba(255, 209, 0, 0.16);
   }
 
-  .instruments-card::after {
-    background: rgba(240, 173, 78, 0.28);
+  .tone-red {
+    box-shadow: inset 0 0 0 1px rgba(217, 4, 41, 0.2);
   }
 
-  .accessories-card::after {
-    background: rgba(35, 92, 112, 0.32);
-  }
-
-  .overview-card h2 {
-    font-size: clamp(2.4rem, 7vw, 4rem);
-  }
-
-  .overview-card p:last-of-type {
-    color: var(--color-muted);
-    max-width: 32ch;
-  }
-
-  .overview-card a {
+  .stage-route a,
+  .route-card a {
     color: var(--color-accent-soft);
     font-weight: 700;
   }
@@ -328,47 +440,106 @@ const purchaseFlow = [
     min-height: 2rem;
     display: inline-flex;
     align-items: center;
-    padding: 0.2rem 0.7rem;
+    padding: 0.2rem 0.72rem;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.07);
+    background: rgba(255, 255, 255, 0.08);
     color: var(--color-foreground);
     font-size: 0.8rem;
     font-weight: 600;
   }
 
-  .category-grid,
-  .benefits-grid {
+  .stage-ticket {
+    display: grid;
+    gap: 0.35rem;
+    padding: 1.1rem 1.2rem;
+    border-radius: 1.4rem;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: linear-gradient(135deg, rgba(255, 209, 0, 0.18), rgba(217, 4, 41, 0.18));
+  }
+
+  .stage-ticket span {
+    color: rgba(11, 11, 11, 0.78);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-weight: 800;
+  }
+
+  .stage-ticket strong {
+    font-size: clamp(1.9rem, 5vw, 3.1rem);
+    line-height: 0.95;
+    color: var(--color-base);
+  }
+
+  .stage-ticket p {
+    max-width: 34ch;
+    color: rgba(11, 11, 11, 0.82);
+    font-weight: 600;
+  }
+
+  .section-head-wide p:last-child,
+  .section-copy,
+  .route-copy p,
+  .experience-card p,
+  .flow-step p,
+  .contact-copy p {
+    color: var(--color-muted);
+  }
+
+  .section-head h2,
+  .flow-head h2,
+  .contact-copy h2 {
+    font-size: clamp(2.7rem, 7vw, 4.8rem);
+  }
+
+  .route-grid,
+  .experience-grid {
     display: grid;
     gap: 1rem;
   }
 
-  .category-panel,
-  .benefit-card {
+  .route-card {
     display: grid;
-    gap: 1rem;
+    gap: 1.1rem;
+    position: relative;
+    overflow: hidden;
   }
 
-  .category-copy,
-  .process-copy {
+  .route-card::before {
+    content: '';
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: 100%;
+    height: 0.28rem;
+    background: linear-gradient(90deg, var(--color-accent), var(--color-secondary));
+  }
+
+  .route-card.tone-red::before {
+    background: linear-gradient(90deg, var(--color-secondary), var(--color-accent));
+  }
+
+  .route-copy {
     display: grid;
     gap: 0.8rem;
   }
 
-  .category-panel h3,
-  .benefit-card h3 {
-    font-size: 1.7rem;
+  .route-copy h3,
+  .experience-card h3 {
+    font-size: 1.75rem;
   }
 
-  .category-panel p,
-  .benefit-card p,
-  .process-copy p,
-  .contact-card p {
-    color: var(--color-muted);
+  .route-link {
+    justify-self: start;
   }
 
-  .benefit-index {
-    width: 2.4rem;
-    height: 2.4rem;
+  .experience-card {
+    display: grid;
+    gap: 0.9rem;
+  }
+
+  .experience-index {
+    width: 2.5rem;
+    height: 2.5rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -378,57 +549,75 @@ const purchaseFlow = [
     font-weight: 800;
   }
 
-  .process-grid {
+  .flow-shell {
     display: grid;
-    gap: 1rem;
-    align-items: start;
+    gap: 1.2rem;
+    background:
+      linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)),
+      radial-gradient(circle at right top, rgba(217, 4, 41, 0.2), transparent 36%),
+      #090909;
   }
 
-  .process-copy h2,
-  .contact-card h2,
-  .section-head h2 {
-    font-size: clamp(2.6rem, 7vw, 4.4rem);
+  .flow-head {
+    display: grid;
+    gap: 0.8rem;
   }
 
-  .process-list {
+  .flow-grid {
     display: grid;
-    gap: 0.9rem;
-  }
-
-  .process-item {
-    display: grid;
-    grid-template-columns: auto 1fr;
     gap: 0.85rem;
-    align-items: start;
   }
 
-  .process-item strong {
-    width: 2.4rem;
-    height: 2.4rem;
+  .flow-step {
+    display: grid;
+    gap: 0.8rem;
+    padding: 1rem;
+    border-radius: 1.2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .flow-step strong {
+    width: 2.5rem;
+    height: 2.5rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     border-radius: 999px;
     color: var(--color-base);
-    background: var(--color-accent);
+    background: linear-gradient(135deg, var(--color-accent), var(--color-secondary));
   }
 
   .contact-card {
     display: grid;
     gap: 1rem;
     align-items: center;
+    padding: clamp(1.3rem, 3vw, 2.2rem);
+    border-radius: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background:
+      radial-gradient(circle at left center, rgba(255, 209, 0, 0.15), transparent 34%),
+      radial-gradient(circle at right center, rgba(217, 4, 41, 0.18), transparent 34%),
+      #0b0b0b;
+    box-shadow: var(--shadow-card);
   }
 
   @media (min-width: 900px) {
-    .hero-grid,
-    .process-grid,
+    .hero-shell,
     .contact-card {
-      grid-template-columns: minmax(0, 1.1fr) minmax(18rem, 0.9fr);
+      grid-template-columns: minmax(0, 1.02fr) minmax(20rem, 0.98fr);
     }
 
-    .category-grid,
-    .benefits-grid {
+    .stage-route-grid,
+    .route-grid,
+    .experience-grid,
+    .flow-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .flow-shell {
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      align-items: start;
     }
   }
 </style>
