@@ -303,16 +303,25 @@ function initCounters() {
     updateDots();
   }
 
-  // On mobile, make track scrollable
-  if (window.innerWidth >= 900) {
-    track.style.overflow = 'hidden';
+  function updateLayout() {
+    const visible = getVisible();
     track.style.display = 'flex';
     track.style.gap = '24px';
     cards.forEach(c => {
-      c.style.minWidth = `calc((100% - 72px) / 4)`;
+      if (visible === 1) {
+        c.style.minWidth = '100%';
+      } else if (visible === 2) {
+        c.style.minWidth = 'calc((100% - 24px) / 2)';
+      } else {
+        c.style.minWidth = 'calc((100% - 72px) / 4)';
+      }
       c.style.flexShrink = '0';
     });
+    goTo(current);
   }
+
+  updateLayout();
+  window.addEventListener('resize', updateLayout);
 
   prevBtn.addEventListener('click', () => goTo(current - 1));
   nextBtn.addEventListener('click', () => goTo(current + 1));
