@@ -1,5 +1,5 @@
 /**
- * SONORAMA — Main JavaScript
+ * UNIVERSO MUSICAL — Main JavaScript
  * Premium Music Store Landing Page
  */
 
@@ -575,5 +575,5 @@ function initCounters() {
   });
 })();
 
-console.log('%c🎵 SONORAMA', 'color:#E61E2A; font-size:2rem; font-weight:bold;');
+console.log('%c🎵 UNIVERSO MUSICAL', 'color:#E61E2A; font-size:2rem; font-weight:bold;');
 console.log('%cDonde la música cobra vida.', 'color:#FFD600; font-size:1rem;');
