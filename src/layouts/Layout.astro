@@ -1,0 +1,46 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { 
+  title = "SONORAMA — Tienda de Música & Arte Sonoro", 
+  description = "SONORAMA: Tu destino definitivo para instrumentos musicales, clases, accesorios, sonidos digitales y asesoría para eventos. Donde la música cobra vida." 
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+</head>
+<body>
+
+  <!-- ========== CURSOR PERSONALIZADO ========== -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <!-- ========== PRELOADER ========== -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-inner">
+      <div class="preloader-logo">SONORAMA</div>
+      <div class="preloader-bar"><div class="preloader-progress" id="preloaderProgress"></div></div>
+      <div class="preloader-note">♪ Cargando el universo sonoro...</div>
+    </div>
+  </div>
+
+  <!-- ========== PARTÍCULAS DE FONDO ========== -->
+  <canvas class="particles-canvas" id="particlesCanvas"></canvas>
+
+  <slot />
+
+  <script src="../scripts/main.js"></script>
+</body>
+</html>
