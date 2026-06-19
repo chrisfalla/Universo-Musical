@@ -5,6 +5,33 @@
 
 'use strict';
 
+(function fixHorizontalOverflow() {
+  const html = document.documentElement;
+  const body = document.body;
+  html.style.overflowX = 'hidden';
+  body.style.overflowX = 'hidden';
+  html.style.maxWidth = '100%';
+  body.style.maxWidth = '100%';
+  html.style.width = '100%';
+  body.style.width = '100%';
+
+  const allEls = document.querySelectorAll('*');
+  allEls.forEach(el => {
+    const s = getComputedStyle(el);
+    if (s.position === 'fixed' || s.position === 'sticky') return;
+    if (el.tagName === 'HTML' || el.tagName === 'BODY') return;
+    if (s.overflowX === 'hidden' || s.overflowX === 'clip' || s.overflow === 'hidden' || s.overflow === 'clip') return;
+    if (el.scrollWidth > el.clientWidth) {
+      el.style.overflowX = 'hidden';
+    }
+  });
+
+  window.addEventListener('resize', () => {
+    html.style.overflowX = 'hidden';
+    body.style.overflowX = 'hidden';
+  });
+})();
+
 const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 const prefersFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -178,7 +205,7 @@ if (prefersFinePointer && !isTouchDevice) {
 
   function setMenuOpen(open) {
     hamburger.classList.toggle('active', open);
-    navLinks.classList.toggle('open', open);
+    navLinks.classList.toggle('mobile-open', open);
     document.body.classList.toggle('menu-open', open);
     hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
   }
@@ -192,15 +219,15 @@ if (prefersFinePointer && !isTouchDevice) {
   });
 
   hamburger.addEventListener('click', () => {
-    setMenuOpen(!navLinks.classList.contains('open'));
+    setMenuOpen(!navLinks.classList.contains('mobile-open'));
   });
 
-  navLinks.querySelectorAll('.nav-link, .nav-mobile-cta').forEach(link => {
+  navLinks.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', () => setMenuOpen(false));
   });
 
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+    if (e.key === 'Escape' && navLinks.classList.contains('mobile-open')) {
       setMenuOpen(false);
     }
   });
