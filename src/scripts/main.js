@@ -10,7 +10,8 @@ const prefersFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const isMobileViewport = () => window.innerWidth < 640;
 
-/* ============================================================
+/* ===========
+=================================================
    1. PRELOADER
    ============================================================ */
 (function initPreloader() {
@@ -335,7 +336,7 @@ if (prefersFinePointer && !isTouchDevice) {
     track.style.display = 'flex';
     cards.forEach(c => {
       if (visible === 1) {
-        c.style.minWidth = '100%';
+        c.style.minWidth = `calc(100% - ${gap}px)`;
       } else if (visible === 2) {
         c.style.minWidth = `calc((100% - ${gap}px) / 2)`;
       } else {
