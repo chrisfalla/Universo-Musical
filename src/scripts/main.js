@@ -5,6 +5,11 @@
 
 'use strict';
 
+const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+const prefersFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const isMobileViewport = () => window.innerWidth < 640;
+
 /* ============================================================
    1. PRELOADER
    ============================================================ */
@@ -30,47 +35,50 @@
 })();
 
 /* ============================================================
-   2. CUSTOM CURSOR
+   2. CUSTOM CURSOR (desktop only)
    ============================================================ */
-(function initCursor() {
-  const cursor = document.getElementById('cursor');
-  const follower = document.getElementById('cursorFollower');
-  let mouseX = 0, mouseY = 0;
-  let followerX = 0, followerY = 0;
+if (prefersFinePointer && !isTouchDevice) {
+  (function initCursor() {
+    const cursor = document.getElementById('cursor');
+    const follower = document.getElementById('cursorFollower');
+    if (!cursor || !follower) return;
 
-  document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    cursor.style.left = mouseX + 'px';
-    cursor.style.top = mouseY + 'px';
-  });
+    let mouseX = 0, mouseY = 0;
+    let followerX = 0, followerY = 0;
 
-  (function animateFollower() {
-    followerX += (mouseX - followerX) * 0.12;
-    followerY += (mouseY - followerY) * 0.12;
-    follower.style.left = followerX + 'px';
-    follower.style.top = followerY + 'px';
-    requestAnimationFrame(animateFollower);
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      cursor.style.left = mouseX + 'px';
+      cursor.style.top = mouseY + 'px';
+    });
+
+    (function animateFollower() {
+      followerX += (mouseX - followerX) * 0.12;
+      followerY += (mouseY - followerY) * 0.12;
+      follower.style.left = followerX + 'px';
+      follower.style.top = followerY + 'px';
+      requestAnimationFrame(animateFollower);
+    })();
+
+    document.querySelectorAll('a, button, .instrument-card, .service-card, .testimonial-card, .class-item').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.style.width = '24px';
+        cursor.style.height = '24px';
+        follower.style.width = '60px';
+        follower.style.height = '60px';
+        follower.style.borderColor = 'rgba(255, 214, 0, 0.6)';
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.style.width = '12px';
+        cursor.style.height = '12px';
+        follower.style.width = '36px';
+        follower.style.height = '36px';
+        follower.style.borderColor = 'rgba(230, 30, 42, 0.6)';
+      });
+    });
   })();
-
-  // Scale cursor on hover
-  document.querySelectorAll('a, button, .instrument-card, .service-card, .testimonial-card, .class-item').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      cursor.style.width = '24px';
-      cursor.style.height = '24px';
-      follower.style.width = '60px';
-      follower.style.height = '60px';
-      follower.style.borderColor = 'rgba(255, 214, 0, 0.6)';
-    });
-    el.addEventListener('mouseleave', () => {
-      cursor.style.width = '12px';
-      cursor.style.height = '12px';
-      follower.style.width = '36px';
-      follower.style.height = '36px';
-      follower.style.borderColor = 'rgba(230, 30, 42, 0.6)';
-    });
-  });
-})();
+}
 
 /* ============================================================
    3. PARTICLES CANVAS
@@ -88,7 +96,8 @@
   });
 
   const COLORS = ['rgba(230, 30, 42,', 'rgba(255, 214, 0,', 'rgba(255, 255, 255,'];
-  const NUM = 60;
+  const NUM = (isTouchDevice || isMobileViewport()) ? 25 : 60;
+  const enableMouseRepulsion = prefersFinePointer && !isTouchDevice;
   const particles = Array.from({ length: NUM }, () => ({
     x: Math.random() * W,
     y: Math.random() * H,
@@ -99,20 +108,22 @@
     alpha: Math.random() * 0.5 + 0.1,
   }));
 
-  // Mouse influence
   let mx = W / 2, my = H / 2;
-  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  if (enableMouseRepulsion) {
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  }
 
   function draw() {
     ctx.clearRect(0, 0, W, H);
 
     particles.forEach(p => {
-      // Gentle mouse repulsion
-      const dx = p.x - mx, dy = p.y - my;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist < 100) {
-        p.vx += (dx / dist) * 0.08;
-        p.vy += (dy / dist) * 0.08;
+      if (enableMouseRepulsion) {
+        const dx = p.x - mx, dy = p.y - my;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 100) {
+          p.vx += (dx / dist) * 0.08;
+          p.vy += (dy / dist) * 0.08;
+        }
       }
 
       // Friction
@@ -164,6 +175,13 @@
   const hamburger = document.getElementById('hamburger');
   const navLinks = document.getElementById('navLinks');
 
+  function setMenuOpen(open) {
+    hamburger.classList.toggle('active', open);
+    navLinks.classList.toggle('open', open);
+    document.body.classList.toggle('menu-open', open);
+    hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+
   window.addEventListener('scroll', () => {
     if (window.scrollY > 60) {
       navbar.classList.add('scrolled');
@@ -173,16 +191,17 @@
   });
 
   hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navLinks.classList.toggle('open');
+    setMenuOpen(!navLinks.classList.contains('open'));
   });
 
-  // Close menu on link click
-  navLinks.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-      hamburger.classList.remove('active');
-      navLinks.classList.remove('open');
-    });
+  navLinks.querySelectorAll('.nav-link, .nav-mobile-cta').forEach(link => {
+    link.addEventListener('click', () => setMenuOpen(false));
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+      setMenuOpen(false);
+    }
   });
 })();
 
@@ -233,36 +252,38 @@ function initCounters() {
 }
 
 /* ============================================================
-   7. 3D TILT EFFECT ON CARDS
+   7. 3D TILT EFFECT ON CARDS (desktop only)
    ============================================================ */
-(function initTilt() {
-  const cards = document.querySelectorAll('.instrument-card, .testimonial-card');
+if (prefersFinePointer && !isTouchDevice) {
+  (function initTilt() {
+    const cards = document.querySelectorAll('.instrument-card, .testimonial-card');
 
-  cards.forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const cx = rect.width / 2;
-      const cy = rect.height / 2;
-      const dx = (x - cx) / cx;
-      const dy = (y - cy) / cy;
+    cards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const cx = rect.width / 2;
+        const cy = rect.height / 2;
+        const dx = (x - cx) / cx;
+        const dy = (y - cy) / cy;
 
-      card.style.transform = `
-        translateY(-8px)
-        perspective(600px)
-        rotateX(${-dy * 6}deg)
-        rotateY(${dx * 6}deg)
-      `;
+        card.style.transform = `
+          translateY(-8px)
+          perspective(600px)
+          rotateX(${-dy * 6}deg)
+          rotateY(${dx * 6}deg)
+        `;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+        card.style.transition = 'transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
+        setTimeout(() => { card.style.transition = ''; }, 600);
+      });
     });
-
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = '';
-      card.style.transition = 'transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
-      setTimeout(() => { card.style.transition = ''; }, 600);
-    });
-  });
-})();
+  })();
+}
 
 /* ============================================================
    8. TESTIMONIALS SLIDER
@@ -293,11 +314,16 @@ function initCounters() {
     nextBtn.style.opacity = current >= maxSlide ? '0.4' : '1';
   }
 
+  function getTrackGap() {
+    return parseFloat(getComputedStyle(track).gap) || 24;
+  }
+
   function goTo(index) {
     const visible = getVisible();
     const maxSlide = Math.ceil(cards.length / visible) - 1;
     current = Math.max(0, Math.min(index, maxSlide));
-    const cardWidth = cards[0].offsetWidth + 24; // gap
+    const gap = getTrackGap();
+    const cardWidth = cards[0].offsetWidth + gap;
     track.style.transform = `translateX(-${current * cardWidth * visible}px)`;
     track.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
     updateDots();
@@ -305,15 +331,15 @@ function initCounters() {
 
   function updateLayout() {
     const visible = getVisible();
+    const gap = getTrackGap();
     track.style.display = 'flex';
-    track.style.gap = '24px';
     cards.forEach(c => {
       if (visible === 1) {
         c.style.minWidth = '100%';
       } else if (visible === 2) {
-        c.style.minWidth = 'calc((100% - 24px) / 2)';
+        c.style.minWidth = `calc((100% - ${gap}px) / 2)`;
       } else {
-        c.style.minWidth = 'calc((100% - 72px) / 4)';
+        c.style.minWidth = `calc((100% - ${gap * 3}px) / 4)`;
       }
       c.style.flexShrink = '0';
     });
@@ -327,21 +353,47 @@ function initCounters() {
   nextBtn.addEventListener('click', () => goTo(current + 1));
   dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
 
-  // Auto-play
-  let autoPlay = setInterval(() => {
-    const visible = getVisible();
-    const maxSlide = Math.ceil(cards.length / visible) - 1;
-    goTo(current < maxSlide ? current + 1 : 0);
-  }, 4500);
+  // Touch swipe
+  let touchStartX = 0;
+  let touchDeltaX = 0;
 
-  track.addEventListener('mouseenter', () => clearInterval(autoPlay));
-  track.addEventListener('mouseleave', () => {
+  track.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+    touchDeltaX = 0;
+  }, { passive: true });
+
+  track.addEventListener('touchmove', (e) => {
+    touchDeltaX = e.touches[0].clientX - touchStartX;
+  }, { passive: true });
+
+  track.addEventListener('touchend', () => {
+    if (Math.abs(touchDeltaX) > 50) {
+      goTo(touchDeltaX < 0 ? current + 1 : current - 1);
+    }
+  });
+
+  // Auto-play
+  let autoPlay = null;
+
+  function startAutoPlay() {
+    if (prefersReducedMotion) return;
     autoPlay = setInterval(() => {
       const visible = getVisible();
       const maxSlide = Math.ceil(cards.length / visible) - 1;
       goTo(current < maxSlide ? current + 1 : 0);
     }, 4500);
-  });
+  }
+
+  function stopAutoPlay() {
+    if (autoPlay) clearInterval(autoPlay);
+    autoPlay = null;
+  }
+
+  startAutoPlay();
+
+  track.addEventListener('mouseenter', stopAutoPlay);
+  track.addEventListener('mouseleave', startAutoPlay);
+  track.addEventListener('touchstart', stopAutoPlay, { passive: true });
 
   updateDots();
 })();
@@ -436,6 +488,8 @@ function initCounters() {
    11. PARALLAX ON HERO & EVENTS
    ============================================================ */
 (function initParallax() {
+  if (prefersReducedMotion || isTouchDevice || isMobileViewport()) return;
+
   const heroImg = document.querySelector('.hero-bg-img');
   const heroContent = document.querySelector('.hero-content');
   const eventsImg = document.querySelector('.events-bg-img');
@@ -454,23 +508,25 @@ function initCounters() {
 })();
 
 /* ============================================================
-   12. MAGNETIC BUTTONS
+   12. MAGNETIC BUTTONS (desktop only)
    ============================================================ */
-(function initMagneticButtons() {
-  document.querySelectorAll('.btn-primary, .btn-ghost').forEach(btn => {
-    btn.addEventListener('mousemove', (e) => {
-      const rect = btn.getBoundingClientRect();
-      const x = e.clientX - rect.left - rect.width / 2;
-      const y = e.clientY - rect.top - rect.height / 2;
-      btn.style.transform = `translate(${x * 0.2}px, ${y * 0.3}px) scale(1.04)`;
+if (prefersFinePointer && !isTouchDevice) {
+  (function initMagneticButtons() {
+    document.querySelectorAll('.btn-primary, .btn-ghost').forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        btn.style.transform = `translate(${x * 0.2}px, ${y * 0.3}px) scale(1.04)`;
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = '';
+        btn.style.transition = 'transform 0.5s cubic-bezier(0.34,1.56,0.64,1)';
+        setTimeout(() => { btn.style.transition = ''; }, 500);
+      });
     });
-    btn.addEventListener('mouseleave', () => {
-      btn.style.transform = '';
-      btn.style.transition = 'transform 0.5s cubic-bezier(0.34,1.56,0.64,1)';
-      setTimeout(() => { btn.style.transition = ''; }, 500);
-    });
-  });
-})();
+  })();
+}
 
 /* ============================================================
    13. INSTRUMENT CARD SOUND WAVE EFFECT

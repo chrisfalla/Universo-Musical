@@ -16,6 +16,7 @@ import Layout from '../layouts/Layout.astro';
         <a href="#clases" class="nav-link" data-text="Clases">Clases</a>
         <a href="#eventos" class="nav-link" data-text="Eventos">Eventos</a>
         <a href="#contacto" class="nav-link" data-text="Contacto">Contacto</a>
+        <a href="#contacto" class="btn-primary nav-mobile-cta">Contáctanos</a>
       </nav>
       <div class="nav-actions">
         <button class="btn-cart" id="btnCart" aria-label="Carrito">
@@ -24,7 +25,7 @@ import Layout from '../layouts/Layout.astro';
         </button>
         <a href="#contacto" class="btn-primary">Contáctanos</a>
       </div>
-      <button class="hamburger" id="hamburger" aria-label="Menú">
+      <button class="hamburger" id="hamburger" aria-label="Menú" aria-expanded="false" aria-controls="navLinks">
         <span></span><span></span><span></span>
       </button>
     </div>
