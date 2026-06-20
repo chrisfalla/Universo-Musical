@@ -1,0 +1,154 @@
+---
+interface Props {
+  nombre: string
+  marca: string
+  precio: number
+  descripcion: string
+  icono: string
+}
+
+const { nombre, marca, precio, descripcion, icono } = Astro.props
+const precioFormateado = '$' + precio.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+---
+
+<div class="product-card">
+  <div class="pc-visual">
+    <span class="pc-icon">{icono}</span>
+  </div>
+  <div class="pc-body">
+    <div class="pc-brand-row">
+      <span class="pc-brand">{marca}</span>
+      <span class="pc-action-icon">⤴</span>
+    </div>
+    <div class="pc-divider"></div>
+    <h4 class="pc-title">{nombre}</h4>
+    <p class="pc-desc">{descripcion}</p>
+    <div class="pc-price">{precioFormateado}</div>
+    <a href="#" class="pc-cta">Consultar <span>→</span></a>
+  </div>
+</div>
+
+<style>
+  .product-card {
+    background: var(--black-3);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: var(--transition-slow);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+  }
+  .product-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(230,30,42,0.3);
+    box-shadow: var(--shadow-card), var(--shadow-glow-red);
+  }
+  .pc-visual {
+    background: linear-gradient(135deg, rgba(230,30,42,0.2), rgba(255,214,0,0.1));
+    padding: 32px 24px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition-slow);
+  }
+  .product-card:hover .pc-visual {
+    background: linear-gradient(135deg, rgba(230,30,42,0.3), rgba(255,214,0,0.15));
+  }
+  .pc-visual::after {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120%;
+    height: 60px;
+    background: var(--black-3);
+    border-radius: 50%;
+  }
+  .pc-icon {
+    font-size: 3.5rem;
+    position: relative;
+    z-index: 1;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+    transition: var(--transition-slow);
+  }
+  .product-card:hover .pc-icon {
+    transform: scale(1.1) rotate(-5deg);
+  }
+  .pc-body {
+    padding: 20px 24px 24px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .pc-brand-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  .pc-brand {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--yellow);
+    text-transform: uppercase;
+  }
+  .pc-action-icon {
+    font-size: 0.85rem;
+    color: var(--white-40);
+    transition: var(--transition);
+  }
+  .product-card:hover .pc-action-icon {
+    color: var(--yellow);
+    transform: translate(2px, -2px);
+  }
+  .pc-divider {
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.1), transparent);
+    margin-bottom: 12px;
+  }
+  .pc-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: var(--white-90);
+  }
+  .pc-desc {
+    font-size: 0.82rem;
+    color: var(--white-60);
+    line-height: 1.5;
+    margin-bottom: 16px;
+    flex: 1;
+  }
+  .pc-price {
+    font-family: var(--font-display, 'Georgia', serif);
+    font-size: 1.6rem;
+    color: var(--yellow);
+    margin-bottom: 16px;
+    letter-spacing: 0.02em;
+  }
+  .pc-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--white-70);
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-decoration: none;
+    padding: 10px 20px;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius-full);
+    transition: var(--transition);
+    align-self: flex-start;
+  }
+  .pc-cta:hover {
+    color: white;
+    background: linear-gradient(135deg, var(--red), var(--yellow));
+    border-color: transparent;
+    gap: 12px;
+  }
+</style>

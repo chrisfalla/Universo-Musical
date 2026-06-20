@@ -1,0 +1,202 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { categorias, getCategoria, formatearPrecio } from '../../data/instrumentos';
+
+export function getStaticPaths() {
+  return categorias.map(cat => ({
+    params: { slug: cat.slug },
+    props: { categoria: cat }
+  }))
+}
+
+interface Props {
+  categoria: typeof categorias[number]
+}
+
+const { categoria } = Astro.props
+const { nombre, icono, descripcionLarga, productos, count, marcas } = categoria
+---
+
+<Layout title={`${nombre} — Universo Musical`} description={`Explora nuestra colección de ${nombre.toLowerCase()}. Más de ${count} productos de marcas como ${marcas.join(', ')}.`}>
+  <nav class="catalog-nav">
+    <div class="container">
+      <a href="/#instrumentos" class="catalog-back">
+        <span class="back-arrow">←</span>
+        <span>Volver al catálogo</span>
+      </a>
+      <a href="/" class="catalog-logo">UNIVERSO MUSICAL</a>
+    </div>
+  </nav>
+
+  <section class="catalog-page">
+    <div class="container">
+      <header class="catalog-header">
+        <div class="ch-icon">{icono}</div>
+        <div>
+          <h1 class="ch-title">{nombre}</h1>
+          <p class="ch-desc">{descripcionLarga}</p>
+          <div class="ch-meta">
+            <span class="ch-count">{count} productos</span>
+            <span class="ch-dot">•</span>
+            <span class="ch-brands">{marcas.join(' · ')}</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="catalog-grid">
+        {productos.map(p => (
+          <ProductCard
+            nombre={p.nombre}
+            marca={p.marca}
+            precio={p.precio}
+            descripcion={p.descripcion}
+            icono={p.icono}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <footer class="catalog-footer">
+    <div class="container">
+      <a href="/#instrumentos" class="catalog-back centered">
+        <span class="back-arrow">←</span>
+        <span>Volver al catálogo principal</span>
+      </a>
+    </div>
+  </footer>
+</Layout>
+
+<style>
+  .catalog-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding: 16px 0;
+  }
+  .catalog-nav .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .catalog-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--white-60);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: var(--transition);
+  }
+  .catalog-back:hover {
+    color: var(--yellow);
+    gap: 12px;
+  }
+  .back-arrow {
+    font-size: 1.1rem;
+  }
+  .catalog-logo {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    letter-spacing: 0.15em;
+    color: var(--white-80);
+    text-decoration: none;
+  }
+  .catalog-logo:hover {
+    color: var(--red);
+  }
+
+  .catalog-page {
+    padding: 80px 0 120px;
+    background: var(--black-2);
+    min-height: 60vh;
+  }
+
+  .catalog-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 28px;
+    margin-bottom: 56px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .ch-icon {
+    font-size: 4rem;
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(230,30,42,0.15), rgba(255,214,0,0.08));
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .ch-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    letter-spacing: 0.04em;
+    line-height: 1.1;
+    margin-bottom: 8px;
+    color: var(--white);
+  }
+  .ch-desc {
+    color: var(--white-60);
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 600px;
+    margin-bottom: 12px;
+  }
+  .ch-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .ch-count {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--yellow);
+    letter-spacing: 0.05em;
+  }
+  .ch-dot {
+    color: var(--white-20);
+  }
+  .ch-brands {
+    font-size: 0.85rem;
+    color: var(--white-40);
+    letter-spacing: 0.03em;
+  }
+
+  .catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .catalog-footer {
+    padding: 40px 0;
+    background: var(--black);
+    border-top: 1px solid rgba(255,255,255,0.04);
+  }
+  .catalog-back.centered {
+    justify-content: center;
+    width: 100%;
+  }
+
+  @media (max-width: 1100px) {
+    .catalog-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .catalog-page { padding: 48px 0 64px; }
+    .catalog-header { flex-direction: column; gap: 16px; }
+    .ch-icon { width: 60px; height: 60px; font-size: 2.5rem; }
+    .catalog-grid { grid-template-columns: 1fr; gap: 16px; }
+    .catalog-nav { padding: 12px 0; }
+  }
+</style>

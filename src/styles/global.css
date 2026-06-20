@@ -358,6 +358,7 @@ img { max-width: 100%; height: auto; }
   position: relative; background: var(--black-3);
   border: 1px solid rgba(255,255,255,0.07); border-radius: var(--radius-lg);
   padding: 36px 28px; overflow: hidden; overflow: clip; transition: var(--transition-slow); cursor: pointer;
+  text-decoration: none; color: inherit; display: block;
 }
 .instrument-card::before {
   content: ''; position: absolute; inset: 0;
@@ -381,8 +382,8 @@ img { max-width: 100%; height: auto; }
 .instrument-card p { color: var(--white-60); font-size: 0.9rem; line-height: 1.6; margin-bottom: 20px; }
 .card-meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
 .card-count { font-size: 0.8rem; color: var(--yellow); font-weight: 600; }
-.card-link { font-size: 0.85rem; color: var(--red); font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 4px; transition: var(--transition); }
-.card-link:hover { color: var(--yellow); gap: 8px; }
+.card-link { font-size: 0.85rem; color: var(--red); font-weight: 600; display: flex; align-items: center; gap: 4px; transition: var(--transition); }
+.instrument-card:hover .card-link { color: var(--yellow); gap: 8px; }
 .card-tags { display: flex; gap: 8px; flex-wrap: wrap; }
 .card-tags span { padding: 3px 10px; border-radius: var(--radius-full); background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); font-size: 0.72rem; color: var(--white-60); font-weight: 500; }
 .instruments-showcase { position: relative; border-radius: var(--radius-xl); overflow: hidden; overflow: clip; max-height: 480px; }
