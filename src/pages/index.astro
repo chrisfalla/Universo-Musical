@@ -1,5 +1,5 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
@@ -11,13 +11,22 @@ import Layout from '../layouts/Layout.astro';
         <span class="logo-text">UNIVERSO MUSICAL</span>
       </a>
       <nav class="nav-links" id="navLinks">
-        <a href="#instrumentos" class="nav-link" data-text="Instrumentos">Instrumentos</a>
-        <a href="#servicios" class="nav-link" data-text="Servicios">Servicios</a>
+        <a href="#instrumentos" class="nav-link" data-text="Instrumentos"
+          >Instrumentos</a
+        >
+        <a href="#servicios" class="nav-link" data-text="Servicios">Servicios</a
+        >
         <a href="#clases" class="nav-link" data-text="Clases">Clases</a>
         <a href="#eventos" class="nav-link" data-text="Eventos">Eventos</a>
         <a href="#contacto" class="nav-link" data-text="Contacto">Contacto</a>
       </nav>
-      <button class="hamburger" id="hamburger" aria-label="Menú" aria-expanded="false" aria-controls="navLinks">
+      <button
+        class="hamburger"
+        id="hamburger"
+        aria-label="Menú"
+        aria-expanded="false"
+        aria-controls="navLinks"
+      >
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -26,58 +35,84 @@ import Layout from '../layouts/Layout.astro';
   <!-- ========== HERO SECTION ========== -->
   <section class="hero" id="home">
     <div class="hero-bg">
-      <img src="/hero_bg.png" alt="Instrumentos musicales" class="hero-bg-img" />
+      <img
+        src="/hero_bg.png"
+        alt="Instrumentos musicales"
+        class="hero-bg-img"
+      />
       <div class="hero-overlay"></div>
     </div>
-    
+
     <div class="hero-content">
       <div class="hero-badge reveal-up">
         <span class="badge-dot"></span>
-        <span>Desde 2008 · Más de 10,000 músicos satisfechos</span>
+        <span>Desde 2024 · Más de 700 músicos satisfechos</span>
       </div>
-      
+
       <h1 class="hero-title reveal-up delay-1">
         <span class="title-line">DONDE LA</span>
         <span class="title-line gradient-text">MÚSICA</span>
         <span class="title-line">COBRA VIDA</span>
       </h1>
-      
+
       <p class="hero-desc reveal-up delay-2">
-        Instrumentos, clases, sonidos digitales, accesorios y asesoría para eventos.<br/>
+        Instrumentos, clases, sonidos digitales, accesorios y asesoría para
+        eventos.<br />
         Todo lo que tu pasión musical necesita, en un solo lugar.
       </p>
-      
+
       <div class="hero-cta reveal-up delay-3">
         <a href="#instrumentos" class="btn-primary btn-large">
           <span>Explorar Catálogo</span>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"></path></svg
+          >
         </a>
         <a href="#clases" class="btn-ghost btn-large">
           <span>Ver Clases</span>
         </a>
       </div>
-      
+
       <div class="hero-stats reveal-up delay-4">
         <div class="stat-item">
-          <span class="stat-num" data-target="500">0</span><span class="stat-plus">+</span>
+          <span class="stat-num" data-target="700">0</span><span
+            class="stat-plus">+</span
+          >
           <span class="stat-label">Instrumentos</span>
         </div>
         <div class="stat-divider"></div>
         <div class="stat-item">
-          <span class="stat-num" data-target="25">0</span><span class="stat-plus">+</span>
+          <span class="stat-num" data-target="25">0</span><span
+            class="stat-plus">+</span
+          >
           <span class="stat-label">Instructores</span>
         </div>
         <div class="stat-divider"></div>
         <div class="stat-item">
-          <span class="stat-num" data-target="15">0</span><span class="stat-plus">+</span>
+          <span class="stat-num" data-target="4">0</span><span class="stat-plus"
+            >+</span
+          >
           <span class="stat-label">Años de Experiencia</span>
         </div>
         <div class="stat-divider"></div>
         <div class="stat-item">
-          <span class="stat-num" data-target="98">0</span><span class="stat-plus">%</span>
+          <span class="stat-num" data-target="98">0</span><span
+            class="stat-plus">%</span
+          >
           <span class="stat-label">Satisfacción</span>
         </div>
       </div>
+    </div>
+
+    <div class="hero-badges reveal-up delay-4">
+      <span class="hero-badge">🚚 Envíos a todo el país</span>
+      <span class="hero-badge-sep">·</span>
+      <span class="hero-badge">💰 Créditos y SisteCrédito</span>
     </div>
 
     <div class="hero-scroll-indicator">
@@ -153,18 +188,30 @@ import Layout from '../layouts/Layout.astro';
     <div class="container">
       <div class="section-header">
         <p class="section-eyebrow reveal-up">Nuestro Catálogo</p>
-        <h2 class="section-title reveal-up delay-1">Los Mejores <span class="gradient-text">Instrumentos</span></h2>
-        <p class="section-desc reveal-up delay-2">Desde guitarras eléctricas hasta instrumentos de viento, contamos con todo para el músico principiante y el profesional más exigente.</p>
+        <h2 class="section-title reveal-up delay-1">
+          Los Mejores <span class="gradient-text">Instrumentos</span>
+        </h2>
+        <p class="section-desc reveal-up delay-2">
+          Desde guitarras eléctricas hasta instrumentos de viento, contamos con
+          todo para el músico principiante y el profesional más exigente.
+        </p>
       </div>
 
       <div class="instruments-grid">
-        <a href="/instrumentos/guitarras/" class="instrument-card reveal-card" id="cat-guitar">
+        <a
+          href="/instrumentos/guitarras/"
+          class="instrument-card reveal-card"
+          id="cat-guitar"
+        >
           <div class="card-glow"></div>
           <div class="card-icon-wrap">
             <div class="card-icon">🎸</div>
           </div>
           <h3>Guitarras</h3>
-          <p>Eléctricas, acústicas, clásicas y bajos. Las mejores marcas al mejor precio.</p>
+          <p>
+            Eléctricas, acústicas, clásicas y bajos. Las mejores marcas al mejor
+            precio.
+          </p>
           <div class="card-meta">
             <span class="card-count">+120 modelos</span>
             <span class="card-link">Ver todo <span>→</span></span>
@@ -174,13 +221,19 @@ import Layout from '../layouts/Layout.astro';
           </div>
         </a>
 
-        <a href="/instrumentos/pianos/" class="instrument-card reveal-card delay-1" id="cat-piano">
+        <a
+          href="/instrumentos/pianos/"
+          class="instrument-card reveal-card delay-1"
+          id="cat-piano"
+        >
           <div class="card-glow"></div>
           <div class="card-icon-wrap">
             <div class="card-icon">🎹</div>
           </div>
           <h3>Pianos & Teclados</h3>
-          <p>Pianos digitales, teclados MIDI y sintetizadores para todo nivel.</p>
+          <p>
+            Pianos digitales, teclados MIDI y sintetizadores para todo nivel.
+          </p>
           <div class="card-meta">
             <span class="card-count">+85 modelos</span>
             <span class="card-link">Ver todo <span>→</span></span>
@@ -190,13 +243,20 @@ import Layout from '../layouts/Layout.astro';
           </div>
         </a>
 
-        <a href="/instrumentos/percusion/" class="instrument-card reveal-card delay-2" id="cat-drums">
+        <a
+          href="/instrumentos/percusion/"
+          class="instrument-card reveal-card delay-2"
+          id="cat-drums"
+        >
           <div class="card-glow"></div>
           <div class="card-icon-wrap">
             <div class="card-icon">🥁</div>
           </div>
           <h3>Percusión</h3>
-          <p>Baterías acústicas, electrónicas, congas, bongós y toda la percusión latina.</p>
+          <p>
+            Baterías acústicas, electrónicas, congas, bongós y toda la percusión
+            latina.
+          </p>
           <div class="card-meta">
             <span class="card-count">+60 modelos</span>
             <span class="card-link">Ver todo <span>→</span></span>
@@ -206,13 +266,20 @@ import Layout from '../layouts/Layout.astro';
           </div>
         </a>
 
-        <a href="/instrumentos/vientos/" class="instrument-card reveal-card delay-3" id="cat-wind">
+        <a
+          href="/instrumentos/vientos/"
+          class="instrument-card reveal-card delay-3"
+          id="cat-wind"
+        >
           <div class="card-glow"></div>
           <div class="card-icon-wrap">
             <div class="card-icon">🎷</div>
           </div>
           <h3>Vientos</h3>
-          <p>Saxofones, trompetas, trombones, flautas y más instrumentos de viento.</p>
+          <p>
+            Saxofones, trompetas, trombones, flautas y más instrumentos de
+            viento.
+          </p>
           <div class="card-meta">
             <span class="card-count">+45 modelos</span>
             <span class="card-link">Ver todo <span>→</span></span>
@@ -222,13 +289,20 @@ import Layout from '../layouts/Layout.astro';
           </div>
         </a>
 
-        <a href="/instrumentos/cuerdas-clasicas/" class="instrument-card reveal-card delay-4" id="cat-strings">
+        <a
+          href="/instrumentos/cuerdas-clasicas/"
+          class="instrument-card reveal-card delay-4"
+          id="cat-strings"
+        >
           <div class="card-glow"></div>
           <div class="card-icon-wrap">
             <div class="card-icon">🎻</div>
           </div>
           <h3>Cuerdas Clásicas</h3>
-          <p>Violines, violas, chelos y contrabajos para estudiantes y concertistas.</p>
+          <p>
+            Violines, violas, chelos y contrabajos para estudiantes y
+            concertistas.
+          </p>
           <div class="card-meta">
             <span class="card-count">+30 modelos</span>
             <span class="card-link">Ver todo <span>→</span></span>
@@ -238,13 +312,19 @@ import Layout from '../layouts/Layout.astro';
           </div>
         </a>
 
-        <a href="/instrumentos/sonidos-digitales/" class="instrument-card reveal-card delay-5" id="cat-digital">
+        <a
+          href="/instrumentos/sonidos-digitales/"
+          class="instrument-card reveal-card delay-5"
+          id="cat-digital"
+        >
           <div class="card-glow"></div>
           <div class="card-icon-wrap">
             <div class="card-icon">🎧</div>
           </div>
           <h3>Sonidos Digitales</h3>
-          <p>Sample packs, plugins VST, loops y bancos de sonidos profesionales.</p>
+          <p>
+            Sample packs, plugins VST, loops y bancos de sonidos profesionales.
+          </p>
           <div class="card-meta">
             <span class="card-count">+500 packs</span>
             <span class="card-link">Ver todo <span>→</span></span>
@@ -256,7 +336,11 @@ import Layout from '../layouts/Layout.astro';
       </div>
 
       <div class="instruments-showcase reveal-up">
-        <img src="/instruments.png" alt="Catálogo de instrumentos musicales" class="showcase-img" />
+        <img
+          src="/instruments.png"
+          alt="Catálogo de instrumentos musicales"
+          class="showcase-img"
+        />
         <div class="showcase-badge">
           <div class="badge-inner">
             <span class="badge-big">500+</span>
@@ -273,7 +357,9 @@ import Layout from '../layouts/Layout.astro';
     <div class="container">
       <div class="section-header">
         <p class="section-eyebrow reveal-up">Lo que hacemos</p>
-        <h2 class="section-title reveal-up delay-1">Servicios <span class="gradient-text">Premium</span></h2>
+        <h2 class="section-title reveal-up delay-1">
+          Servicios <span class="gradient-text">Premium</span>
+        </h2>
       </div>
 
       <div class="services-grid">
@@ -281,7 +367,10 @@ import Layout from '../layouts/Layout.astro';
           <div class="sc-number">01</div>
           <div class="sc-icon">🏪</div>
           <h3>Tienda Especializada</h3>
-          <p>Más de 500 instrumentos, accesorios y equipos de las mejores marcas mundiales. Atención personalizada y garantía en todos los productos.</p>
+          <p>
+            Más de 500 instrumentos, accesorios y equipos de las mejores marcas
+            mundiales. Atención personalizada y garantía en todos los productos.
+          </p>
           <ul class="sc-list">
             <li>✓ Garantía de 1 a 3 años</li>
             <li>✓ Financiamiento disponible</li>
@@ -290,24 +379,36 @@ import Layout from '../layouts/Layout.astro';
           <a href="#" class="sc-cta">Explorar <span>↗</span></a>
         </div>
 
-        <div class="service-card reveal-card delay-1" id="svc-accessories">
+        <a
+          href="/accesorios/"
+          class="service-card reveal-card delay-1"
+          id="svc-accessories"
+        >
           <div class="sc-number">02</div>
           <div class="sc-icon">🎛️</div>
           <h3>Accesorios & Equipo</h3>
-          <p>Cuerdas, baquetas, afinadores, pedales, amplificadores, cables, estuches y todo lo que necesitas.</p>
+          <p>
+            Cuerdas, baquetas, afinadores, pedales, amplificadores, cables,
+            estuches y todo lo que necesitas.
+          </p>
           <div class="sc-tags">
-            <span>Cuerdas</span><span>Pedales</span><span>Amplificadores</span><span>Estuches</span>
+            <span>Cuerdas</span><span>Pedales</span><span>Amplificadores</span
+            ><span>Estuches</span>
           </div>
-          <a href="#" class="sc-cta">Ver Accesorios <span>↗</span></a>
-        </div>
+          <span class="sc-cta">Ver Accesorios <span>↗</span></span>
+        </a>
 
         <div class="service-card reveal-card delay-2" id="svc-sounds">
           <div class="sc-number">03</div>
           <div class="sc-icon">🔊</div>
           <h3>Asesoría para Eventos</h3>
-          <p>Diseño de sistemas de sonido profesional para conciertos, bodas, eventos corporativos y más.</p>
+          <p>
+            Diseño de sistemas de sonido profesional para conciertos, bodas,
+            eventos corporativos y más.
+          </p>
           <div class="sc-tags">
-            <span>Conciertos</span><span>Bodas</span><span>Corporativos</span><span>Festivales</span>
+            <span>Conciertos</span><span>Bodas</span><span>Corporativos</span
+            ><span>Festivales</span>
           </div>
           <a href="#" class="sc-cta">Saber Más <span>↗</span></a>
         </div>
@@ -316,9 +417,14 @@ import Layout from '../layouts/Layout.astro';
           <div class="sc-number">04</div>
           <div class="sc-icon">🔧</div>
           <h3>Ensamble de Instrumentos</h3>
-          <p>Armado, configuración y personalización de instrumentos a la medida de tu estilo y necesidades.</p>
+          <p>
+            Armado, configuración y personalización de instrumentos a la medida
+            de tu estilo y necesidades.
+          </p>
           <div class="sc-tags">
-            <span>Guitarras</span><span>Bajos</span><span>Baterías</span><span>Personalización</span>
+            <span>Guitarras</span><span>Bajos</span><span>Baterías</span><span
+              >Personalización</span
+            >
           </div>
           <a href="#" class="sc-cta">Consultar <span>↗</span></a>
         </div>
@@ -332,9 +438,13 @@ import Layout from '../layouts/Layout.astro';
       <div class="classes-inner">
         <div class="classes-content">
           <p class="section-eyebrow reveal-up">Academia Musical</p>
-          <h2 class="section-title reveal-up delay-1">Clases para <span class="gradient-text">Todos</span> los Niveles</h2>
+          <h2 class="section-title reveal-up delay-1">
+            Clases para <span class="gradient-text">Todos</span> los Niveles
+          </h2>
           <p class="section-desc reveal-up delay-2">
-            Aprende con los mejores instructores certificados. Clases individuales o grupales, presenciales y en línea. Desde el primer acorde hasta el escenario profesional.
+            Aprende con los mejores instructores certificados. Clases
+            individuales o grupales, presenciales y en línea. Desde el primer
+            acorde hasta el escenario profesional.
           </p>
 
           <div class="classes-grid reveal-up delay-3">
@@ -391,19 +501,29 @@ import Layout from '../layouts/Layout.astro';
           <div class="classes-cta reveal-up delay-4">
             <a href="#contacto" class="btn-primary btn-large">
               <span>Inscribirme Ahora</span>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"></path></svg
+              >
             </a>
             <div class="classes-price-note">
               <span class="price-from">Desde</span>
-              <span class="price-amount">$80,000</span>
+              <span class="price-amount">$140,000</span>
               <span class="price-period">/ mes</span>
             </div>
           </div>
         </div>
-        
+
         <div class="classes-image reveal-right">
           <div class="img-frame">
-            <img src="/music_class.png" alt="Clases de música en Universo Musical" />
+            <img
+              src="/music_class.png"
+              alt="Clases de música en Universo Musical"
+            />
             <div class="img-badge">
               <span>⭐ 4.9/5</span>
               <span>Calificación de instructores</span>
@@ -422,12 +542,21 @@ import Layout from '../layouts/Layout.astro';
     </div>
     <div class="container">
       <div class="events-content">
-        <p class="section-eyebrow reveal-up light-eyebrow">Producción & Sonido</p>
-        <h2 class="section-title reveal-up delay-1 light-title">Asesoría para <br/><span class="gradient-text">Eventos Sonoros</span></h2>
-        <p class="section-desc reveal-up delay-2 light-desc" style="color: rgba(255,255,255,0.8);">
-          Diseñamos y ejecutamos sistemas de sonido de alta fidelidad para todo tipo de eventos. Nuestro equipo técnico garantiza una experiencia auditiva inigualable.
+        <p class="section-eyebrow reveal-up light-eyebrow">
+          Producción & Sonido
         </p>
-        
+        <h2 class="section-title reveal-up delay-1 light-title">
+          Asesoría para <br /><span class="gradient-text">Eventos Sonoros</span>
+        </h2>
+        <p
+          class="section-desc reveal-up delay-2 light-desc"
+          style="color: rgba(255,255,255,0.8);"
+        >
+          Diseñamos y ejecutamos sistemas de sonido de alta fidelidad para todo
+          tipo de eventos. Nuestro equipo técnico garantiza una experiencia
+          auditiva inigualable.
+        </p>
+
         <div class="events-features reveal-up delay-3">
           <div class="event-feat" id="ef-concert">
             <div class="ef-icon">🎪</div>
@@ -461,7 +590,14 @@ import Layout from '../layouts/Layout.astro';
 
         <a href="#contacto" class="btn-primary btn-large reveal-up delay-4">
           <span>Solicitar Cotización</span>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"></path></svg
+          >
         </a>
       </div>
     </div>
@@ -472,14 +608,21 @@ import Layout from '../layouts/Layout.astro';
     <div class="container">
       <div class="section-header">
         <p class="section-eyebrow reveal-up">Lo Dicen Ellos</p>
-        <h2 class="section-title reveal-up delay-1">Músicos que nos <span class="gradient-text">Eligen</span></h2>
+        <h2 class="section-title reveal-up delay-1">
+          Músicos que nos <span class="gradient-text">Eligen</span>
+        </h2>
       </div>
 
       <div class="testimonials-wrapper">
+        <div class="testimonials-progress" id="testimonialsProgress"><div class="tp-bar"></div></div>
         <div class="testimonials-track" id="testimonialsTrack">
           <div class="testimonial-card" id="t1">
             <div class="t-quote">"</div>
-            <p class="t-text">Universo Musical cambió mi vida musical. Encontré mi guitarra perfecta y las clases de jazz que me llevaron a mi primer concierto profesional.</p>
+            <p class="t-text">
+              Universo Musical cambió mi vida musical. Encontré mi guitarra
+              perfecta y las clases de jazz que me llevaron a mi primer
+              concierto profesional.
+            </p>
             <div class="t-author">
               <div class="t-avatar">🧑‍🎤</div>
               <div class="t-info">
@@ -492,7 +635,11 @@ import Layout from '../layouts/Layout.astro';
 
           <div class="testimonial-card" id="t2">
             <div class="t-quote">"</div>
-            <p class="t-text">El equipo de asesoría para eventos fue increíble. El sonido de nuestra boda fue perfecto, todos los invitados quedaron maravillados.</p>
+            <p class="t-text">
+              El equipo de asesoría para eventos fue increíble. El sonido de
+              nuestra boda fue perfecto, todos los invitados quedaron
+              maravillados.
+            </p>
             <div class="t-author">
               <div class="t-avatar">👩</div>
               <div class="t-info">
@@ -505,7 +652,11 @@ import Layout from '../layouts/Layout.astro';
 
           <div class="testimonial-card" id="t3">
             <div class="t-quote">"</div>
-            <p class="t-text">Los packs de sonidos digitales son de una calidad impresionante. Mi producción musical dio un salto enorme desde que trabajo con Universo Musical.</p>
+            <p class="t-text">
+              Los packs de sonidos digitales son de una calidad impresionante.
+              Mi producción musical dio un salto enorme desde que trabajo con
+              Universo Musical.
+            </p>
             <div class="t-author">
               <div class="t-avatar">🧑‍💻</div>
               <div class="t-info">
@@ -518,7 +669,11 @@ import Layout from '../layouts/Layout.astro';
 
           <div class="testimonial-card" id="t4">
             <div class="t-quote">"</div>
-            <p class="t-text">Mi hijo empezó las clases de piano a los 8 años. Ahora tiene 12 y ya participa en recitales. El equipo de instructores es extraordinario.</p>
+            <p class="t-text">
+              Mi hijo empezó las clases de piano a los 8 años. Ahora tiene 12 y
+              ya participa en recitales. El equipo de instructores es
+              extraordinario.
+            </p>
             <div class="t-author">
               <div class="t-avatar">👨‍👦</div>
               <div class="t-info">
@@ -528,19 +683,74 @@ import Layout from '../layouts/Layout.astro';
               <div class="t-stars">⭐⭐⭐⭐⭐</div>
             </div>
           </div>
+
+          <div class="testimonial-card" id="t5">
+            <div class="t-quote">"</div>
+            <p class="t-text">
+              Compré mi batería electrónica con financiamiento y fue la mejor
+              decisión. El proceso fue súper fácil y el equipo llegó en 3 días.
+            </p>
+            <div class="t-author">
+              <div class="t-avatar">🥁</div>
+              <div class="t-info">
+                <strong>Santiago Rojas</strong>
+                <span>Baterista</span>
+              </div>
+              <div class="t-stars">⭐⭐⭐⭐⭐</div>
+            </div>
+          </div>
+
+          <div class="testimonial-card" id="t6">
+            <div class="t-quote">"</div>
+            <p class="t-text">
+              El ensamble de mi guitarra quedó perfecto. La ajustaron a mi
+              medida y ahora tocar es otra experiencia. Servicio de primera.
+            </p>
+            <div class="t-author">
+              <div class="t-avatar">🎸</div>
+              <div class="t-info">
+                <strong>Andrés Muñoz</strong>
+                <span>Guitarrista</span>
+              </div>
+              <div class="t-stars">⭐⭐⭐⭐⭐</div>
+            </div>
+          </div>
+
+          <div class="testimonial-card" id="t7">
+            <div class="t-quote">"</div>
+            <p class="t-text">
+              Los precios son los mejores de Neiva y el envío a casa fue
+              rapidísimo. Ya soy cliente para toda la vida. Recomendado 100%.
+            </p>
+            <div class="t-author">
+              <div class="t-avatar">🎤</div>
+              <div class="t-info">
+                <strong>Valentina Ortiz</strong>
+                <span>Cantante</span>
+              </div>
+              <div class="t-stars">⭐⭐⭐⭐⭐</div>
+            </div>
+          </div>
+
+          <div class="testimonial-card" id="t8">
+            <div class="t-quote">"</div>
+            <p class="t-text">
+              Las clases de batería transformaron a mi hijo. Ahora toca en una
+              banda y su pasión por la música crece cada día. Gracias Universo
+              Musical.
+            </p>
+            <div class="t-author">
+              <div class="t-avatar">👩‍👦</div>
+              <div class="t-info">
+                <strong>Mónica Herrera</strong>
+                <span>Madre de Estudiante</span>
+              </div>
+              <div class="t-stars">⭐⭐⭐⭐⭐</div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="testimonials-nav">
-        <button class="t-nav-btn" id="tPrev" aria-label="Anterior">←</button>
-        <div class="t-dots" id="tDots">
-          <span class="t-dot active"></span>
-          <span class="t-dot"></span>
-          <span class="t-dot"></span>
-          <span class="t-dot"></span>
-        </div>
-        <button class="t-nav-btn" id="tNext" aria-label="Siguiente">→</button>
-      </div>
     </div>
   </section>
 
@@ -562,14 +772,18 @@ import Layout from '../layouts/Layout.astro';
             </div>
           </div>
         </div>
-        
+
         <div class="assembly-content">
           <p class="section-eyebrow reveal-up">Servicio Técnico</p>
-          <h2 class="section-title reveal-up delay-1">Ensamble & <span class="gradient-text">Personalización</span></h2>
+          <h2 class="section-title reveal-up delay-1">
+            Ensamble & <span class="gradient-text">Personalización</span>
+          </h2>
           <p class="section-desc reveal-up delay-2">
-            Nuestros técnicos especializados arman, configuran y personalizan tu instrumento exactamente como lo necesitas. Desde setups básicos hasta modificaciones avanzadas.
+            Nuestros técnicos especializados arman, configuran y personalizan tu
+            instrumento exactamente como lo necesitas. Desde setups básicos
+            hasta modificaciones avanzadas.
           </p>
-          
+
           <div class="assembly-steps reveal-up delay-3">
             <div class="step" id="step1">
               <div class="step-num">1</div>
@@ -603,7 +817,14 @@ import Layout from '../layouts/Layout.astro';
 
           <a href="#contacto" class="btn-primary btn-large reveal-up delay-4">
             <span>Solicitar Ensamble</span>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"></path></svg
+            >
           </a>
         </div>
       </div>
@@ -616,15 +837,20 @@ import Layout from '../layouts/Layout.astro';
       <div class="contact-inner">
         <div class="contact-content">
           <p class="section-eyebrow reveal-up">Hablemos</p>
-          <h2 class="section-title reveal-up delay-1">Estamos Listos para <span class="gradient-text">Ayudarte</span></h2>
-          <p class="section-desc reveal-up delay-2">Ya sea que busques un instrumento, quieras inscribirte en clases, o necesites asesoría para tu próximo evento, estamos aquí.</p>
-          
+          <h2 class="section-title reveal-up delay-1">
+            Estamos Listos para <span class="gradient-text">Ayudarte</span>
+          </h2>
+          <p class="section-desc reveal-up delay-2">
+            Ya sea que busques un instrumento, quieras inscribirte en clases, o
+            necesites asesoría para tu próximo evento, estamos aquí.
+          </p>
+
           <div class="contact-info reveal-up delay-3">
             <div class="ci-item" id="ci-phone">
               <div class="ci-icon">📞</div>
               <div class="ci-text">
                 <strong>Teléfono</strong>
-                <span>+57 300 123 4567</span>
+                <span>+57 302 822 5644</span>
               </div>
             </div>
             <div class="ci-item" id="ci-email">
@@ -638,30 +864,79 @@ import Layout from '../layouts/Layout.astro';
               <div class="ci-icon">📍</div>
               <div class="ci-text">
                 <strong>Ubicación</strong>
-                <span>Calle 72 #10-45, Bogotá, Colombia</span>
+                <span
+                  >Carrera 32 E # 22A sur - 61 Barrio Encenillo, Neiva-Huila,
+                  Colombia</span
+                >
               </div>
             </div>
             <div class="ci-item" id="ci-hours">
               <div class="ci-icon">⏰</div>
               <div class="ci-text">
                 <strong>Horarios</strong>
-                <span>Lun–Sáb: 9am–7pm | Dom: 10am–4pm</span>
+                <span>Lun–Vie: 8:30am–6pm | Sab: 10am–5pm</span>
               </div>
             </div>
           </div>
 
           <div class="social-links reveal-up delay-4">
-            <a href="#" class="social-btn" id="sl-instagram" aria-label="Instagram">
-              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            <a
+              href="https://www.instagram.com/universomusical_neiva/"
+              target="_blank"
+              rel="noopener"
+              class="social-btn"
+              id="sl-instagram"
+              aria-label="Instagram"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                width="20"
+                height="20"
+                ><path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+                ></path></svg
+              >
             </a>
-            <a href="#" class="social-btn" id="sl-facebook" aria-label="Facebook">
-              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            <a
+              href="https://web.facebook.com/UniversoMusicalNeiva?locale=es_LA"
+              target="_blank"
+              rel="noopener"
+              class="social-btn"
+              id="sl-facebook"
+              aria-label="Facebook"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                width="20"
+                height="20"
+                ><path
+                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                ></path></svg
+              >
             </a>
             <a href="#" class="social-btn" id="sl-youtube" aria-label="YouTube">
-              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+              <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                width="20"
+                height="20"
+                ><path
+                  d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"
+                ></path></svg
+              >
             </a>
             <a href="#" class="social-btn" id="sl-tiktok" aria-label="TikTok">
-              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+              <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                width="20"
+                height="20"
+                ><path
+                  d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"
+                ></path></svg
+              >
             </a>
           </div>
         </div>
@@ -670,12 +945,22 @@ import Layout from '../layouts/Layout.astro';
           <form class="contact-form" id="contactForm" novalidate>
             <h3>Envíanos un Mensaje</h3>
             <div class="form-group">
-              <input type="text" id="formName" placeholder="Tu nombre completo" required />
+              <input
+                type="text"
+                id="formName"
+                placeholder="Tu nombre completo"
+                required
+              />
               <label for="formName">Nombre</label>
               <div class="input-line"></div>
             </div>
             <div class="form-group">
-              <input type="email" id="formEmail" placeholder="correo@ejemplo.com" required />
+              <input
+                type="email"
+                id="formEmail"
+                placeholder="correo@ejemplo.com"
+                required
+              />
               <label for="formEmail">Correo Electrónico</label>
               <div class="input-line"></div>
             </div>
@@ -693,14 +978,27 @@ import Layout from '../layouts/Layout.astro';
               <div class="input-line"></div>
             </div>
             <div class="form-group">
-              <textarea id="formMessage" placeholder="Cuéntanos cómo podemos ayudarte..." rows="4" required></textarea>
+              <textarea
+                id="formMessage"
+                placeholder="Cuéntanos cómo podemos ayudarte..."
+                rows="4"
+                required></textarea>
               <label for="formMessage">Mensaje</label>
               <div class="input-line"></div>
             </div>
             <button type="submit" class="btn-primary btn-full" id="formSubmit">
               <span class="btn-text">Enviar Mensaje</span>
               <span class="btn-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  ><line x1="22" y1="2" x2="11" y2="13"></line><polygon
+                    points="22 2 15 22 11 13 2 9 22 2"></polygon></svg
+                >
               </span>
             </button>
           </form>
@@ -718,7 +1016,10 @@ import Layout from '../layouts/Layout.astro';
             <span class="logo-icon">🎵</span>
             <span class="logo-text">UNIVERSO MUSICAL</span>
           </a>
-          <p>Tu destino definitivo para la música. Donde el sonido cobra vida y los sueños musicales se hacen realidad.</p>
+          <p>
+            Tu destino definitivo para la música. Donde el sonido cobra vida y
+            los sueños musicales se hacen realidad.
+          </p>
           <div class="footer-tagline">♪ Suena diferente. Vive la música.</div>
         </div>
 
@@ -759,7 +1060,14 @@ import Layout from '../layouts/Layout.astro';
       </div>
 
       <div class="footer-bottom">
-        <p>© 2026 Universo Musical. Todos los derechos reservados. Hecho con ♥ para los músicos.</p>
+        <div class="footer-badges">
+          <span class="fb-badge">🚚 Envíos a todo el país</span>
+          <span class="fb-badge">💰 Créditos y SisteCrédito</span>
+        </div>
+        <p>
+          © 2026 Universo Musical. Todos los derechos reservados. Hecho con ♥
+          para los músicos.
+        </p>
         <div class="footer-payments">
           <span>Aceptamos:</span>
           <span class="payment-badge">💳 Visa</span>
@@ -772,8 +1080,18 @@ import Layout from '../layouts/Layout.astro';
   </footer>
 
   <!-- WhatsApp FAB -->
-  <a href="https://wa.me/573001234567" class="whatsapp-fab" id="whatsappFab" aria-label="WhatsApp" target="_blank">
-    <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+  <a
+    href="https://wa.me/573028225644"
+    class="whatsapp-fab"
+    id="whatsappFab"
+    aria-label="WhatsApp"
+    target="_blank"
+  >
+    <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"
+      ><path
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
+      ></path></svg
+    >
     <span class="fab-pulse"></span>
   </a>
 </Layout>

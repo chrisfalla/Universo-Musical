@@ -284,7 +284,7 @@ function initCounters() {
    ============================================================ */
 if (prefersFinePointer && !isTouchDevice) {
   (function initTilt() {
-    const cards = document.querySelectorAll('.instrument-card, .testimonial-card');
+    const cards = document.querySelectorAll('.instrument-card');
 
     cards.forEach(card => {
       card.addEventListener('mousemove', (e) => {
@@ -317,113 +317,91 @@ if (prefersFinePointer && !isTouchDevice) {
    8. TESTIMONIALS SLIDER
    ============================================================ */
 (function initTestimonials() {
+  const wrapper = document.querySelector('.testimonials-wrapper');
   const track = document.getElementById('testimonialsTrack');
-  const dots = document.querySelectorAll('.t-dot');
-  const prevBtn = document.getElementById('tPrev');
-  const nextBtn = document.getElementById('tNext');
-  const cards = track.querySelectorAll('.testimonial-card');
+  const cards = track ? [...track.querySelectorAll('.testimonial-card')] : [];
+  const progressFill = document.querySelector('#testimonialsProgress .tp-bar');
   let current = 0;
+  let autoPlay = null;
+  const N = cards.length;
+  const GAP = 24;
+  if (!wrapper || !track || N === 0) return;
 
-  function getVisible() {
-    if (window.innerWidth < 640) return 1;
-    if (window.innerWidth < 900) return 2;
-    return 4;
+  function visible() { return wrapper.offsetWidth <= 640 ? 1 : 2; }
+  function pages() { return Math.ceil(N / visible()); }
+
+  function cw() {
+    const w = wrapper.offsetWidth;
+    const v = visible();
+    const total = w - GAP * (v - 1);
+    return total > 0 ? Math.floor(total / v) : 520;
   }
 
-  function updateDots() {
-    const visible = getVisible();
-    const maxSlide = Math.ceil(cards.length / visible) - 1;
-    dots.forEach((dot, i) => {
-      dot.classList.toggle('active', i === current);
-    });
-    prevBtn.disabled = current === 0;
-    nextBtn.disabled = current >= maxSlide;
-    prevBtn.style.opacity = current === 0 ? '0.4' : '1';
-    nextBtn.style.opacity = current >= maxSlide ? '0.4' : '1';
-  }
-
-  function getTrackGap() {
-    return parseFloat(getComputedStyle(track).gap) || 24;
+  function resetProgress() {
+    if (!progressFill) return;
+    progressFill.style.transition = 'none';
+    progressFill.style.width = '0%';
+    progressFill.offsetHeight;
+    progressFill.style.transition = `width 4000ms linear`;
+    progressFill.style.width = '100%';
   }
 
   function goTo(index) {
-    const visible = getVisible();
-    const maxSlide = Math.ceil(cards.length / visible) - 1;
-    current = Math.max(0, Math.min(index, maxSlide));
-    const gap = getTrackGap();
-    const cardWidth = cards[0].offsetWidth + gap;
-    track.style.transform = `translateX(-${current * cardWidth * visible}px)`;
+    const v = visible();
+    const p = pages();
+    current = Math.max(0, Math.min(index, p - 1));
+    const w = cw();
+    track.style.transform = `translateX(-${current * (w + GAP) * v}px)`;
     track.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
-    updateDots();
+    resetProgress();
   }
 
-  function updateLayout() {
-    const visible = getVisible();
-    const gap = getTrackGap();
+  function layout() {
+    const w = cw();
+    const v = visible();
+    wrapper.style.padding = '0';
     track.style.display = 'flex';
+    track.style.flexWrap = 'nowrap';
+    track.style.gap = GAP + 'px';
+    track.style.width = (N * w + (N - 1) * GAP) + 'px';
     cards.forEach(c => {
-      if (visible === 1) {
-        c.style.minWidth = `calc(100% - ${gap}px)`;
-      } else if (visible === 2) {
-        c.style.minWidth = `calc((100% - ${gap}px) / 2)`;
-      } else {
-        c.style.minWidth = `calc((100% - ${gap * 3}px) / 4)`;
-      }
+      c.style.width = w + 'px';
       c.style.flexShrink = '0';
+      c.style.boxSizing = 'border-box';
     });
+    if (current >= pages()) current = 0;
     goTo(current);
   }
 
-  updateLayout();
-  window.addEventListener('resize', updateLayout);
+  function start() {
+    if (prefersReducedMotion) return;
+    resetProgress();
+    autoPlay = setInterval(() => goTo(current < pages() - 1 ? current + 1 : 0), 4000);
+  }
+  function stop() {
+    clearInterval(autoPlay);
+    autoPlay = null;
+    if (progressFill) progressFill.style.width = '0%';
+  }
 
-  prevBtn.addEventListener('click', () => goTo(current - 1));
-  nextBtn.addEventListener('click', () => goTo(current + 1));
-  dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+  function init() {
+    if (wrapper.offsetWidth === 0) { setTimeout(init, 30); return; }
+    layout();
+    window.addEventListener('resize', layout);
+    start();
+    wrapper.addEventListener('mouseenter', stop);
+    wrapper.addEventListener('mouseleave', start);
+  }
 
-  // Touch swipe
-  let touchStartX = 0;
-  let touchDeltaX = 0;
-
-  track.addEventListener('touchstart', (e) => {
-    touchStartX = e.touches[0].clientX;
-    touchDeltaX = 0;
-  }, { passive: true });
-
-  track.addEventListener('touchmove', (e) => {
-    touchDeltaX = e.touches[0].clientX - touchStartX;
-  }, { passive: true });
-
-  track.addEventListener('touchend', () => {
-    if (Math.abs(touchDeltaX) > 50) {
-      goTo(touchDeltaX < 0 ? current + 1 : current - 1);
-    }
+  let sx = 0, dx = 0;
+  wrapper.addEventListener('touchstart', (e) => { sx = e.touches[0].clientX; dx = 0; stop(); }, { passive: true });
+  wrapper.addEventListener('touchmove', (e) => { dx = e.touches[0].clientX - sx; }, { passive: true });
+  wrapper.addEventListener('touchend', () => {
+    if (Math.abs(dx) > 50) goTo(dx < 0 ? current + 1 : current - 1);
+    start();
   });
 
-  // Auto-play
-  let autoPlay = null;
-
-  function startAutoPlay() {
-    if (prefersReducedMotion) return;
-    autoPlay = setInterval(() => {
-      const visible = getVisible();
-      const maxSlide = Math.ceil(cards.length / visible) - 1;
-      goTo(current < maxSlide ? current + 1 : 0);
-    }, 4500);
-  }
-
-  function stopAutoPlay() {
-    if (autoPlay) clearInterval(autoPlay);
-    autoPlay = null;
-  }
-
-  startAutoPlay();
-
-  track.addEventListener('mouseenter', stopAutoPlay);
-  track.addEventListener('mouseleave', startAutoPlay);
-  track.addEventListener('touchstart', stopAutoPlay, { passive: true });
-
-  updateDots();
+  init();
 })();
 
 /* ============================================================

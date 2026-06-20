@@ -103,6 +103,28 @@ export const categorias = [
   }
 ]
 
+export const accesorios = {
+  nombre: "Accesorios & Equipo",
+  icono: "🎛️",
+  descripcionLarga: "Todo lo que necesitas para complementar tu equipo musical. Cuerdas, pedales, amplificadores, cables, estuches y más de las mejores marcas.",
+  count: 200,
+  marcas: ["D'Addario", "BOSS", "Marshall", "Shure", "Fender"],
+  productos: [
+    { nombre: "Cuerdas Eléctricas .009", marca: "D'Addario", precio: 35000, descripcion: "Juego de cuerdas calibre .009 para guitarra eléctrica, tono brillante y duradero.", icono: "🎸" },
+    { nombre: "Cuerdas Acústicas .012", marca: "D'Addario", precio: 38000, descripcion: "Juego de cuerdas bronce .012 para guitarra acústica, sonido cálido y resonante.", icono: "🎸" },
+    { nombre: "Cuerdas Bajo .045", marca: "D'Addario", precio: 45000, descripcion: "Juego de cuerdas para bajo eléctrico calibre .045, graves profundos.", icono: "🎸" },
+    { nombre: "DS-1 Distortion", marca: "BOSS", precio: 320000, descripcion: "Pedal de distorsión clásico con sonido agresivo y versátil.", icono: "🎛️" },
+    { nombre: "DD-8 Digital Delay", marca: "BOSS", precio: 380000, descripcion: "Pedal de delay con 11 modos de eco y hasta 40 segundos de grabación.", icono: "🎛️" },
+    { nombre: "Tu-3 Chromatic Tuner", marca: "BOSS", precio: 280000, descripcion: "Afinador cromático con display LED y salida de bypass confiable.", icono: "🎛️" },
+    { nombre: "Code 50", marca: "Marshall", precio: 1200000, descripcion: "Amplificador de 50W con modelado digital y efectos integrados.", icono: "🎸" },
+    { nombre: "MG30GFX", marca: "Marshall", precio: 850000, descripcion: "Amplificador de 30W con efectos digitales y sonido clásico Marshall.", icono: "🎸" },
+    { nombre: "SM57", marca: "Shure", precio: 520000, descripcion: "Micrófono dinámico icónico para instrumentos y voces, robusto y confiable.", icono: "🎤" },
+    { nombre: "SM58", marca: "Shure", precio: 580000, descripcion: "Micrófono vocal estándar de la industria con sonido cálido y claro.", icono: "🎤" },
+    { nombre: "Cable Instrumento 3m", marca: "Fender", precio: 65000, descripcion: "Cable blindado de 3 metros con conectores niquelados y aislamiento premium.", icono: "🔌" },
+    { nombre: "Estuche Rígido Universal", marca: "Fender", precio: 320000, descripcion: "Estuche acolchado con protección reforzada y compartimento de accesorios.", icono: "🧳" },
+  ]
+}
+
 export function getCategoria(slug) {
   return categorias.find(c => c.slug === slug) || null
 }

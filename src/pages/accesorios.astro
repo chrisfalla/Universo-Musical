@@ -1,29 +1,17 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import ProductCard from '../../components/ProductCard.astro';
-import { categorias } from '../../data/instrumentos';
+import Layout from '../layouts/Layout.astro';
+import ProductCard from '../components/ProductCard.astro';
+import { accesorios } from '../data/instrumentos';
 
-export function getStaticPaths() {
-  return categorias.map(cat => ({
-    params: { slug: cat.slug },
-    props: { categoria: cat }
-  }))
-}
-
-interface Props {
-  categoria: typeof categorias[number]
-}
-
-const { categoria } = Astro.props
-const { nombre, icono, descripcionLarga, productos, count, marcas } = categoria
+const { nombre, icono, descripcionLarga, productos, count, marcas } = accesorios
 ---
 
-<Layout title={`${nombre} — Universo Musical`} description={`Explora nuestra colección de ${nombre.toLowerCase()}. Más de ${count} productos de marcas como ${marcas.join(', ')}.`}>
+<Layout title={`${nombre} — Universo Musical`} description={`${descripcionLarga} Más de ${count} productos.`}>
   <nav class="catalog-nav">
     <div class="container">
-      <a href="/#instrumentos" class="catalog-back">
+      <a href="/#servicios" class="catalog-back">
         <span class="back-arrow">←</span>
-        <span>Volver al catálogo</span>
+        <span>Volver a servicios</span>
       </a>
       <a href="/" class="catalog-logo">UNIVERSO MUSICAL</a>
     </div>
@@ -60,9 +48,9 @@ const { nombre, icono, descripcionLarga, productos, count, marcas } = categoria
 
   <footer class="catalog-footer">
     <div class="container">
-      <a href="/#instrumentos" class="catalog-back centered">
+      <a href="/#servicios" class="catalog-back centered">
         <span class="back-arrow">←</span>
-        <span>Volver al catálogo principal</span>
+        <span>Volver a servicios</span>
       </a>
     </div>
   </footer>
