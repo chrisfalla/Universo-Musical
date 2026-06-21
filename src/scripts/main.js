@@ -95,14 +95,14 @@ if (prefersFinePointer && !isTouchDevice) {
         cursor.style.height = '24px';
         follower.style.width = '60px';
         follower.style.height = '60px';
-        follower.style.borderColor = 'rgba(255, 214, 0, 0.6)';
+        follower.style.borderColor = 'rgba(212, 175, 55, 0.6)';
       });
       el.addEventListener('mouseleave', () => {
         cursor.style.width = '12px';
         cursor.style.height = '12px';
         follower.style.width = '36px';
         follower.style.height = '36px';
-        follower.style.borderColor = 'rgba(230, 30, 42, 0.6)';
+        follower.style.borderColor = 'rgba(26, 58, 108, 0.6)';
       });
     });
   })();
@@ -123,7 +123,7 @@ if (prefersFinePointer && !isTouchDevice) {
     H = canvas.height = window.innerHeight;
   });
 
-  const COLORS = ['rgba(230, 30, 42,', 'rgba(255, 214, 0,', 'rgba(255, 255, 255,'];
+  const COLORS = ['rgba(26, 58, 108,', 'rgba(212, 175, 55,', 'rgba(255, 255, 255,'];
   const NUM = (isTouchDevice || isMobileViewport()) ? 25 : 60;
   const enableMouseRepulsion = prefersFinePointer && !isTouchDevice;
   const particles = Array.from({ length: NUM }, () => ({
@@ -181,7 +181,7 @@ if (prefersFinePointer && !isTouchDevice) {
         const dist = Math.sqrt(dx * dx + dy * dy);
         if (dist < 120) {
           ctx.beginPath();
-          ctx.strokeStyle = `rgba(230, 30, 42, ${0.05 * (1 - dist / 120)})`;
+          ctx.strokeStyle = `rgba(26, 58, 108, ${0.05 * (1 - dist / 120)})`;
           ctx.lineWidth = 0.5;
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
@@ -549,7 +549,7 @@ if (prefersFinePointer && !isTouchDevice) {
         position:absolute; border-radius:50%;
         width:10px; height:10px;
         left:${x - 5}px; top:${y - 5}px;
-        background:rgba(255,214,0,0.3);
+        background:rgba(212,175,55,0.3);
         pointer-events:none; z-index:10;
         animation:rippleEffect 0.7s ease-out forwards;
       `;
@@ -575,7 +575,7 @@ if (prefersFinePointer && !isTouchDevice) {
   const bar = document.createElement('div');
   bar.style.cssText = `
     position:fixed; top:0; left:0; height:3px; z-index:9999;
-    background:linear-gradient(90deg, #E61E2A, #FFD600);
+    background:linear-gradient(90deg, #D4AF37, #E8C55A);
     width:0%; transition:width 0.1s linear; pointer-events:none;
   `;
   document.body.appendChild(bar);
@@ -608,7 +608,7 @@ if (prefersFinePointer && !isTouchDevice) {
 
     const note = document.createElement('span');
     const noteChar = notes[Math.floor(Math.random() * notes.length)];
-    const color = Math.random() > 0.5 ? '#E61E2A' : '#FFD600';
+    const color = Math.random() > 0.5 ? '#1A3A6C' : '#D4AF37';
 
     note.textContent = noteChar;
     note.style.cssText = `
@@ -646,5 +646,5 @@ if (prefersFinePointer && !isTouchDevice) {
   });
 })();
 
-console.log('%c🎵 UNIVERSO MUSICAL', 'color:#E61E2A; font-size:2rem; font-weight:bold;');
-console.log('%cDonde la música cobra vida.', 'color:#FFD600; font-size:1rem;');
+console.log('%c🎵 UNIVERSO MUSICAL', 'color:#1A3A6C; font-size:2rem; font-weight:bold;');
+console.log('%cDonde la música cobra vida.', 'color:#D4AF37; font-size:1rem;');

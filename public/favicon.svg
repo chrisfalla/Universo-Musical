@@ -1,29 +1,35 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
   <defs>
-    <!-- Background Gradient representing space/nebula -->
+    <!-- Background Gradient - Dark Navy -->
     <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0a051b"/>
-      <stop offset="50%" stop-color="#120c31"/>
-      <stop offset="100%" stop-color="#05020c"/>
+      <stop offset="0%" stop-color="#0a1628"/>
+      <stop offset="50%" stop-color="#0f2544"/>
+      <stop offset="100%" stop-color="#0a0f1a"/>
     </linearGradient>
     
-    <!-- Planet/Vinyl Gradient -->
+    <!-- Planet/Vinyl Gradient - Blue to Gold -->
     <linearGradient id="planetGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#8a2be2"/>
-      <stop offset="50%" stop-color="#da1b60"/>
-      <stop offset="100%" stop-color="#ff8c00"/>
+      <stop offset="0%" stop-color="#1A3A6C"/>
+      <stop offset="50%" stop-color="#2A5298"/>
+      <stop offset="100%" stop-color="#1A3A6C"/>
     </linearGradient>
 
     <!-- Ring/Gold Gradient -->
     <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#ffd700"/>
-      <stop offset="50%" stop-color="#ff8c00"/>
-      <stop offset="100%" stop-color="#ff3e96"/>
+      <stop offset="0%" stop-color="#D4AF37"/>
+      <stop offset="50%" stop-color="#E8C55A"/>
+      <stop offset="100%" stop-color="#B8941F"/>
+    </linearGradient>
+
+    <!-- Blue Glow Gradient -->
+    <linearGradient id="blueGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2A5298"/>
+      <stop offset="100%" stop-color="#1A3A6C"/>
     </linearGradient>
 
     <!-- Glow Filter -->
     <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="12" result="blur" />
+      <feGaussianBlur stdDeviation="10" result="blur" />
       <feComposite in="SourceGraphic" in2="blur" operator="over" />
     </filter>
   </defs>
@@ -32,22 +38,22 @@
   <rect width="512" height="512" rx="128" fill="url(#bgGrad)"/>
 
   <g transform="translate(256, 256)">
-    <!-- Orbits/Rings (like vinyl grooves and cosmic rings) -->
+    <!-- Orbits/Rings -->
     <!-- Ring 1 (Outer) -->
-    <ellipse rx="210" ry="85" fill="none" stroke="url(#ringGrad)" stroke-width="8" transform="rotate(-15)" opacity="0.6"/>
+    <ellipse rx="210" ry="85" fill="none" stroke="url(#ringGrad)" stroke-width="8" transform="rotate(-15)" opacity="0.5"/>
     
     <!-- Ring 2 (Middle) -->
-    <ellipse rx="170" ry="65" fill="none" stroke="url(#ringGrad)" stroke-width="12" transform="rotate(-15)"/>
+    <ellipse rx="170" ry="65" fill="none" stroke="url(#ringGrad)" stroke-width="12" transform="rotate(-15)" opacity="0.8"/>
     
     <!-- Ring 3 (Inner) -->
-    <ellipse rx="130" ry="45" fill="none" stroke="#ffffff" stroke-dasharray="10 15" stroke-width="5" transform="rotate(-15)" opacity="0.8"/>
+    <ellipse rx="130" ry="45" fill="none" stroke="rgba(255,255,255,0.6)" stroke-dasharray="10 15" stroke-width="5" transform="rotate(-15)"/>
 
-    <!-- Planet in center (also looks like the vinyl center) -->
+    <!-- Planet/Vinyl center -->
     <circle r="95" fill="url(#planetGrad)" filter="url(#glow)"/>
     
     <!-- Vinyl label center -->
-    <circle r="30" fill="#0a051b"/>
-    <circle r="8" fill="#ffd700"/>
+    <circle r="30" fill="#0a1628"/>
+    <circle r="8" fill="#D4AF37"/>
 
     <!-- Musical Note floating on top -->
     <g transform="translate(25, -75)" filter="url(#glow)">
@@ -57,11 +63,11 @@
       <ellipse cx="45" cy="35" rx="15" ry="10" transform="rotate(-15)" fill="url(#ringGrad)"/>
     </g>
 
-    <!-- Tiny stars/sparkles in background -->
+    <!-- Stars/sparkles -->
     <circle cx="-150" cy="-140" r="6" fill="#fff" opacity="0.9"/>
-    <polygon points="-120,-80 -117,-83 -120,-90 -123,-83" fill="#ffd700"/>
+    <polygon points="-120,-80 -117,-83 -120,-90 -123,-83" fill="#D4AF37"/>
     <circle cx="160" cy="150" r="4" fill="#fff" opacity="0.7"/>
     <polygon points="120,-160 123,-163 120,-170 117,-163" fill="#fff"/>
-    <circle cx="-160" cy="100" r="5" fill="#ffd700" opacity="0.8"/>
+    <circle cx="-160" cy="100" r="5" fill="#D4AF37" opacity="0.8"/>
   </g>
 </svg>
