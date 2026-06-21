@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Página no encontrada — Universo Musical" description="La página que buscas no existe. Vuelve al inicio de Universo Musical.">
+  <section class="not-found-page">
+    <div class="container" style="text-align:center;padding:120px 20px;">
+      <div style="font-size:96px;margin-bottom:16px;">🎵</div>
+      <h1 style="font-family:var(--font-display);font-size:clamp(3rem,6vw,5rem);color:var(--yellow);margin-bottom:16px;">404</h1>
+      <h2 style="font-family:var(--font-display);font-size:clamp(1.5rem,3vw,2.2rem);color:var(--white);margin-bottom:20px;">Página no encontrada</h2>
+      <p style="color:var(--white-60);max-width:500px;margin:0 auto 40px;font-size:1.05rem;line-height:1.7;">
+        La página que buscas no existe o ha sido movida. Pero no te preocupes, aún puedes explorar nuestro catálogo de instrumentos.
+      </p>
+      <a href="/" class="btn-primary btn-large" style="display:inline-flex;">
+        <span>Volver al Inicio</span>
+      </a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .not-found-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+</style>

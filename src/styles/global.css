@@ -297,10 +297,6 @@ img { max-width: 100%; height: auto; }
   0%, 100% { filter: drop-shadow(0 0 50px rgba(212,175,55,0.6)); }
   50% { filter: drop-shadow(0 0 80px rgba(212,175,55,0.8)); }
 }
-@keyframes titleGlow {
-  0%, 100% { filter: drop-shadow(0 0 40px rgba(26,58,108,0.5)); }
-  50% { filter: drop-shadow(0 0 60px rgba(212,175,55,0.4)); }
-}
 .hero-desc { font-size: clamp(1rem, 2vw, 1.2rem); color: var(--white-80); line-height: 1.7; max-width: 560px; margin-bottom: 40px; }
 .hero-cta { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 64px; }
 .hero-stats {
