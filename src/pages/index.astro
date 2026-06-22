@@ -929,66 +929,20 @@ import Layout from "../layouts/Layout.astro";
         </div>
 
         <div class="contact-form-wrap">
-          <form class="contact-form" id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
-            <h3>Envíanos un Mensaje</h3>
-            <div class="form-group">
-              <input
-                type="text"
-                id="formName"
-                placeholder="Tu nombre completo"
-                required
-              />
-              <label for="formName">Nombre</label>
-              <div class="input-line"></div>
-            </div>
-            <div class="form-group">
-              <input
-                type="email"
-                id="formEmail"
-                placeholder="correo@ejemplo.com"
-                required
-              />
-              <label for="formEmail">Correo Electrónico</label>
-              <div class="input-line"></div>
-            </div>
-            <div class="form-group">
-              <select id="formSubject">
-                <option value="">Selecciona un tema</option>
-                <option value="instrumentos">Instrumentos</option>
-                <option value="clases">Clases Musicales</option>
-                <option value="eventos">Asesoría de Eventos</option>
-                <option value="ensamble">Ensamble</option>
-                <option value="accesorios">Accesorios</option>
-                <option value="otro">Otro</option>
-              </select>
-              <label for="formSubject">Asunto</label>
-              <div class="input-line"></div>
-            </div>
-            <div class="form-group">
-              <textarea
-                id="formMessage"
-                placeholder="Cuéntanos cómo podemos ayudarte..."
-                rows="4"
-                required></textarea>
-              <label for="formMessage">Mensaje</label>
-              <div class="input-line"></div>
-            </div>
-            <button type="submit" class="btn-primary btn-full" id="formSubmit">
-              <span class="btn-text">Enviar Mensaje</span>
-              <span class="btn-icon">
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  ><line x1="22" y1="2" x2="11" y2="13"></line><polygon
-                    points="22 2 15 22 11 13 2 9 22 2"></polygon></svg
-                >
-              </span>
-            </button>
-          </form>
+          <h3 style="font-size:1.5rem;font-weight:700;margin-bottom:24px;">Envíanos un Mensaje</h3>
+          <p style="color:var(--white-60);line-height:1.7;margin-bottom:24px;">
+            Escríbenos y te responderemos a la brevedad:
+          </p>
+          <div style="margin-bottom:16px;">
+            <div style="font-size:0.8rem;color:var(--white-60);margin-bottom:4px;">Correo:</div>
+            <a href="mailto:jhones.1.9@hotmail.com" style="color:var(--yellow);font-weight:600;font-size:1rem;text-decoration:none;">jhones.1.9@hotmail.com</a>
+          </div>
+          <a href="mailto:jhones.1.9@hotmail.com" class="btn-primary btn-full" style="margin-bottom:12px;">
+            <span>📧 Abrir Correo</span>
+          </a>
+          <a href="https://wa.me/573028225644" class="btn-ghost btn-full" target="_blank" style="border-color:rgba(37,211,102,0.4);color:#25D366;">
+            <span>💬 WhatsApp</span>
+          </a>
         </div>
       </div>
     </div>

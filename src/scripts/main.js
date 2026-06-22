@@ -407,74 +407,7 @@ if (prefersFinePointer && !isTouchDevice) {
 /* ============================================================
    9. CONTACT FORM
    ============================================================ */
-(function initForm() {
-  const form = document.getElementById('contactForm');
-  const submitBtn = document.getElementById('formSubmit');
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    const name = document.getElementById('formName').value.trim();
-    const email = document.getElementById('formEmail').value.trim();
-    const message = document.getElementById('formMessage').value.trim();
-
-    if (!name || !email || !message) {
-      shakeForm();
-      return;
-    }
-
-    if (!emailRegex.test(email)) {
-      shakeForm();
-      return;
-    }
-
-    submitBtn.querySelector('.btn-text').textContent = 'Enviando...';
-    submitBtn.disabled = true;
-
-    try {
-      const response = await fetch(form.action, {
-        method: 'POST',
-        body: new FormData(form),
-        headers: { 'Accept': 'application/json' }
-      });
-
-      if (response.ok) {
-        submitBtn.querySelector('.btn-text').textContent = '✓ Mensaje Enviado';
-        submitBtn.style.background = 'linear-gradient(135deg, #22c55e, #16a34a)';
-        form.reset();
-      } else {
-        throw new Error('Error en el servidor');
-      }
-    } catch (err) {
-      submitBtn.querySelector('.btn-text').textContent = '✗ Error al enviar';
-      submitBtn.style.background = 'linear-gradient(135deg, #dc2626, #b91c1c)';
-    }
-
-    setTimeout(() => {
-      submitBtn.querySelector('.btn-text').textContent = 'Enviar Mensaje';
-      submitBtn.style.background = '';
-      submitBtn.disabled = false;
-    }, 4000);
-  });
-
-  function shakeForm() {
-    form.style.animation = 'shake 0.4s ease';
-    setTimeout(() => { form.style.animation = ''; }, 400);
-  }
-
-  const style = document.createElement('style');
-  style.textContent = `
-    @keyframes shake {
-      0%,100%{transform:translateX(0)}
-      20%{transform:translateX(-8px)}
-      40%{transform:translateX(8px)}
-      60%{transform:translateX(-5px)}
-      80%{transform:translateX(5px)}
-    }
-  `;
-  document.head.appendChild(style);
-})();
 
 /* ============================================================
    10. SMOOTH SCROLL & ACTIVE NAV

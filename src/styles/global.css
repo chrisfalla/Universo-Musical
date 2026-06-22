@@ -534,7 +534,7 @@ img { max-width: 100%; height: auto; }
 .t-dot.active::before { width: 24px; border-radius: var(--radius-full); }
 
 /* ============================================================ ASSEMBLY ============================================================ */
-.assembly-section { padding: 120px 0; background: linear-gradient(180deg, var(--black), var(--black-2)); position: relative; z-index: 1; }
+.assembly-section { padding: 120px 0 80px; background: linear-gradient(180deg, var(--black), var(--black-2)); position: relative; z-index: 1; }
 .assembly-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
 .assembly-graphic { position: relative; width: min(400px, 80vw); height: min(400px, 80vw); display: grid; place-items: center; margin: 0 auto; }
 .ag-circle { position: absolute; border-radius: 50%; border: 2px solid; animation: rotateSlow linear infinite; }
