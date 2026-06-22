@@ -410,6 +410,7 @@ if (prefersFinePointer && !isTouchDevice) {
 (function initForm() {
   const form = document.getElementById('contactForm');
   const submitBtn = document.getElementById('formSubmit');
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -423,21 +424,38 @@ if (prefersFinePointer && !isTouchDevice) {
       return;
     }
 
-    // Simulate sending
+    if (!emailRegex.test(email)) {
+      shakeForm();
+      return;
+    }
+
     submitBtn.querySelector('.btn-text').textContent = 'Enviando...';
     submitBtn.disabled = true;
 
-    await new Promise(r => setTimeout(r, 1800));
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
 
-    submitBtn.querySelector('.btn-text').textContent = '✓ Mensaje Enviado';
-    submitBtn.style.background = 'linear-gradient(135deg, #22c55e, #16a34a)';
+      if (response.ok) {
+        submitBtn.querySelector('.btn-text').textContent = '✓ Mensaje Enviado';
+        submitBtn.style.background = 'linear-gradient(135deg, #22c55e, #16a34a)';
+        form.reset();
+      } else {
+        throw new Error('Error en el servidor');
+      }
+    } catch (err) {
+      submitBtn.querySelector('.btn-text').textContent = '✗ Error al enviar';
+      submitBtn.style.background = 'linear-gradient(135deg, #dc2626, #b91c1c)';
+    }
 
     setTimeout(() => {
-      form.reset();
       submitBtn.querySelector('.btn-text').textContent = 'Enviar Mensaje';
       submitBtn.style.background = '';
       submitBtn.disabled = false;
-    }, 3000);
+    }, 4000);
   });
 
   function shakeForm() {
@@ -445,7 +463,6 @@ if (prefersFinePointer && !isTouchDevice) {
     setTimeout(() => { form.style.animation = ''; }, 400);
   }
 
-  // Inject shake keyframe
   const style = document.createElement('style');
   style.textContent = `
     @keyframes shake {
