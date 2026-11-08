@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import ProductCard from '../../components/ProductCard.astro';
+import ThemeToggle from '../../components/ThemeToggle.astro';
 import { categorias } from '../../data/instrumentos';
 
 export function getStaticPaths() {
@@ -26,6 +27,7 @@ const { nombre, icono, descripcionLarga, productos, count, marcas } = categoria
         <span>Volver al catálogo</span>
       </a>
       <a href="/" class="catalog-logo">UNIVERSO MUSICAL</a>
+      <ThemeToggle />
     </div>
   </nav>
 

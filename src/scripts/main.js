@@ -208,6 +208,8 @@ if (prefersFinePointer && !isTouchDevice) {
     navLinks.classList.toggle('mobile-open', open);
     document.body.classList.toggle('menu-open', open);
     hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (open) navLinks.dataset.theme = 'dark';
+    else delete navLinks.dataset.theme;
   }
 
   window.addEventListener('scroll', () => {
@@ -669,6 +671,7 @@ if (prefersFinePointer && !isTouchDevice) {
 (function initGalleryLightbox() {
   const overlay = document.createElement('div');
   overlay.className = 'lightbox-overlay';
+  overlay.dataset.theme = 'dark';
   overlay.innerHTML = `
     <button class="lightbox-close" aria-label="Cerrar">&times;</button>
     <button class="lightbox-nav lightbox-prev" aria-label="Anterior">&#8249;</button>
@@ -767,5 +770,41 @@ if (prefersFinePointer && !isTouchDevice) {
   });
 })();
 
+/* ============================================================
+   19. THEME TOGGLE
+   ============================================================ */
+(function initThemeToggle() {
+  function currentTheme() {
+    return document.documentElement.dataset.theme || 'dark';
+  }
+
+  function applyTheme(theme) {
+    document.documentElement.dataset.theme = theme;
+    try { localStorage.setItem('theme', theme); } catch (e) {}
+    document.querySelectorAll('[data-theme-toggle]').forEach(function (btn) {
+      btn.setAttribute('aria-pressed', theme === 'light' ? 'true' : 'false');
+    });
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', theme === 'light' ? '#FFFFFF' : '#1A3A6C');
+  }
+
+  document.querySelectorAll('[data-theme-toggle]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      applyTheme(currentTheme() === 'light' ? 'dark' : 'light');
+    });
+  });
+
+  var initial = currentTheme();
+  document.querySelectorAll('[data-theme-toggle]').forEach(function (btn) {
+    btn.setAttribute('aria-pressed', initial === 'light' ? 'true' : 'false');
+  });
+
+  if (window.matchMedia) {
+    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', function (e) {
+      try { if (localStorage.getItem('theme')) return; } catch (err) {}
+      applyTheme(e.matches ? 'light' : 'dark');
+    });
+  }
+})();
 console.log('%c🎵 UNIVERSO MUSICAL', 'color:#1A3A6C; font-size:2rem; font-weight:bold;');
 console.log('%cDonde la música cobra vida.', 'color:#D4AF37; font-size:1rem;');

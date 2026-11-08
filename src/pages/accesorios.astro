@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ProductCard from '../components/ProductCard.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
 import { accesorios } from '../data/instrumentos';
 
 const { nombre, icono, descripcionLarga, productos, count, marcas } = accesorios
@@ -14,6 +15,7 @@ const { nombre, icono, descripcionLarga, productos, count, marcas } = accesorios
         <span>Volver a servicios</span>
       </a>
       <a href="/" class="catalog-logo">UNIVERSO MUSICAL</a>
+      <ThemeToggle />
     </div>
   </nav>
 

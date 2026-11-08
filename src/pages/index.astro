@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import ThemeToggle from "../components/ThemeToggle.astro";
 ---
 
 <Layout>
@@ -20,6 +21,7 @@ import Layout from "../layouts/Layout.astro";
         <a href="#eventos" class="nav-link" data-text="Eventos">Eventos</a>
         <a href="#galeria-clases" class="nav-link" data-text="Galería">Galería</a>
         <a href="#contacto" class="nav-link" data-text="Contacto">Contacto</a>
+        <ThemeToggle />
       </nav>
       <button
         class="hamburger"
@@ -34,7 +36,7 @@ import Layout from "../layouts/Layout.astro";
   </header>
 
   <!-- ========== HERO SECTION ========== -->
-  <section class="hero" id="home">
+  <section class="hero" id="home" data-theme="dark">
     <div class="hero-bg">
       <img
         src="/hero_bg.png"
@@ -135,7 +137,7 @@ import Layout from "../layouts/Layout.astro";
   </section>
 
   <!-- ========== MARQUEE TICKER ========== -->
-  <div class="marquee-section">
+  <div class="marquee-section" data-theme="dark">
     <div class="marquee-track">
       <div class="marquee-content">
         <span>🎸 Guitarras Eléctricas</span>
@@ -347,7 +349,7 @@ import Layout from "../layouts/Layout.astro";
           height="400"
           loading="lazy"
         />
-        <div class="showcase-badge">
+        <div class="showcase-badge" data-theme="dark">
           <div class="badge-inner">
             <span class="badge-big">500+</span>
             <span class="badge-small">Productos disponibles</span>
@@ -533,7 +535,7 @@ import Layout from "../layouts/Layout.astro";
               height="500"
               loading="lazy"
             />
-            <div class="img-badge">
+            <div class="img-badge" data-theme="dark">
               <span>⭐ 4.9/5</span>
               <span>Calificación de instructores</span>
             </div>
@@ -544,7 +546,7 @@ import Layout from "../layouts/Layout.astro";
   </section>
 
   <!-- ========== EVENTOS ========== -->
-  <section class="events-section" id="eventos">
+  <section class="events-section" id="eventos" data-theme="dark">
     <div class="events-bg">
       <img src="/sound_event.png" alt="Eventos sonoros — Asesoría de sonido profesional" class="events-bg-img" width="1920" height="1080" loading="lazy" />
       <div class="events-overlay"></div>
@@ -1093,7 +1095,7 @@ import Layout from "../layouts/Layout.astro";
   <!-- WhatsApp FAB -->
   <a
     href="https://wa.me/573028225644"
-    class="whatsapp-fab"
+    class="whatsapp-fab" data-theme="dark"
     id="whatsappFab"
     aria-label="WhatsApp"
     target="_blank"

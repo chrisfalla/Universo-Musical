@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
 ---
 
 <Layout title="Página no encontrada — Universo Musical" description="La página que buscas no existe. Vuelve al inicio de Universo Musical.">
@@ -14,6 +15,9 @@ import Layout from '../layouts/Layout.astro';
       <a href="/" class="btn-primary btn-large" style="display:inline-flex;">
         <span>Volver al Inicio</span>
       </a>
+      <div style="margin-top:24px;display:flex;justify-content:center;">
+        <ThemeToggle />
+      </div>
     </div>
   </section>
 </Layout>
