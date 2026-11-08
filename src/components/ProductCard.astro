@@ -31,7 +31,7 @@ const precioFormateado = '$' + precio.toString().replace(/\B(?=(\d{3})+(?!\d))/g
 <style>
   .product-card {
     background: var(--black-3);
-    border: 1px solid rgba(255,255,255,0.07);
+    border: 1px solid var(--glass-07);
     border-radius: var(--radius-lg);
     overflow: hidden;
     transition: var(--transition-slow);
@@ -108,7 +108,7 @@ const precioFormateado = '$' + precio.toString().replace(/\B(?=(\d{3})+(?!\d))/g
   }
   .pc-divider {
     height: 1px;
-    background: linear-gradient(90deg, rgba(255,255,255,0.1), transparent);
+    background: linear-gradient(90deg, var(--glass-10), transparent);
     margin-bottom: 12px;
   }
   .pc-title {
@@ -140,7 +140,7 @@ const precioFormateado = '$' + precio.toString().replace(/\B(?=(\d{3})+(?!\d))/g
     font-size: 0.85rem;
     text-decoration: none;
     padding: 10px 20px;
-    border: 1px solid rgba(255,255,255,0.12);
+    border: 1px solid var(--glass-12);
     border-radius: var(--radius-full);
     transition: var(--transition);
     align-self: flex-start;
