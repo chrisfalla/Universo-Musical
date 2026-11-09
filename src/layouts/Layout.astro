@@ -9,9 +9,9 @@ interface Props {
 }
 
 const {
-  title = "Universo Musical — Tienda de Música & Arte Sonoro",
-  description = "Universo Musical: Tu destino definitivo para instrumentos musicales, clases, accesorios, sonidos digitales y asesoría para eventos. Donde la música cobra vida.",
-  image = "/og-image.png",
+  title = "Universo Musical | Instrumentos, Clases y Eventos en Neiva",
+  description = "Tienda de instrumentos musicales en Neiva, Huila: guitarras, pianos, baterías, accesorios, sonidos digitales, clases de música y asesoría para eventos.",
+  image = "/og-image-logo.png",
   canonical
 } = Astro.props;
 
@@ -79,9 +79,10 @@ const ogImage = `${BASE_URL}${image}`;
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <!-- Icons -->
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/logo-icon-512.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/logo-icon-192.png" />
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-  <link rel="apple-touch-icon" href="/favicon.svg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
   <!-- Structured Data -->
   <script type="application/ld+json">
@@ -89,7 +90,8 @@ const ogImage = `${BASE_URL}${image}`;
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "name": "Universo Musical",
-  "image": "https://universomusicalneiva.com/og-image.png",
+  "image": "https://universomusicalneiva.com/og-image-logo.png",
+  "logo": "https://universomusicalneiva.com/logo-icon-512.png",
   "url": "https://universomusicalneiva.com",
   "telephone": "+57 302 822 5644",
   "email": "jhones.1.9@hotmail.com",
@@ -136,7 +138,7 @@ const ogImage = `${BASE_URL}${image}`;
     "https://www.instagram.com/universomusical_neiva/",
     "https://web.facebook.com/UniversoMusicalNeiva"
   ],
-  "description": "Universo Musical: Tienda de instrumentos musicales, clases, accesorios, sonidos digitales y asesoría para eventos en Neiva, Huila."
+  "description": "Tienda de instrumentos musicales en Neiva, Huila: guitarras, pianos, baterías, accesorios, sonidos digitales, clases de música y asesoría para eventos."
 }
 </script>
 </head>
@@ -149,7 +151,7 @@ const ogImage = `${BASE_URL}${image}`;
   <!-- ========== PRELOADER ========== -->
   <div class="preloader" id="preloader">
     <div class="preloader-inner">
-      <div class="preloader-logo">UNIVERSO MUSICAL</div>
+      <img class="preloader-logo-img" src="/logouniverso.jpg" alt="Universo Musical" width="230" height="230" />
       <div class="preloader-bar"><div class="preloader-progress" id="preloaderProgress"></div></div>
       <div class="preloader-note">♪ Cargando el universo musical...</div>
     </div>
